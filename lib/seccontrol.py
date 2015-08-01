@@ -29,7 +29,6 @@ class SecControl(object):
     
     def __init__(self, id):
         self.id = id
-
         # Load control information
         results = commands.getstatusoutput("xsltproc --stringparam controlnumber %s lib/control2json.xsl data/800-53-controls.xml" % self.id)
         if results[0] == 0:
@@ -50,18 +49,24 @@ class SecControl(object):
             self.description = "Error"
         
     def get_control_json(self):
+        self.details['responsible'] = self.getResponsible()
         print json.dumps(self.details)
 
     def getResponsible(self):
-        m = re.match(r'The organization|The information system', self.description)
-        if m.group(0) == "The organization":
-            return "organization"
-        else:
-            if m.group(0) == "The information system":
-                return "information system"
+        m = re.match(r'The organization|The information system|\[Withdrawn', self.description)
+        if m:
+            if m.group(0) == "The organization":
+                return "organization"
             else:
-                return "other"
-
+                if m.group(0) == "The information system":
+                    return "information system"
+                else:
+                    if m.group(0) == "[Withdrawn":
+                        return "withdrawn"
+                    else:
+                        return "other"
+        else:
+            return "other"
 
 # if __name__ == "__main__":
 #     print "Class SecControl"

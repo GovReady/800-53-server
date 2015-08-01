@@ -20,7 +20,7 @@ class SecControlTest(unittest.TestCase):
 	def test_details(self):
 		id = "AT-3"
 		c = SecControl(id)
-		self.assertTrue(c.title == "ROLE-BASED SECURITY TRAINING")		
+		self.assertTrue(c.title == "ROLE-BASED SECURITY TRAINING")
 
 	def test_details_nonexistent_control(self):
 		id = "AX-3"
@@ -28,6 +28,7 @@ class SecControlTest(unittest.TestCase):
 		self.assertTrue(c.title == "Error")		
 
 	def test_responsible(self):
+		# test "organization"
 		id = "AT-3"
 		c = SecControl(id)
 		r = c.getResponsible()
@@ -37,6 +38,14 @@ class SecControlTest(unittest.TestCase):
 		c = SecControl(id)
 		r = c.getResponsible()
 		self.assertTrue(r == "information system")
+
+		# test "[Withdrawn"
+		id = "SA-7"
+		c = SecControl("SA-7")
+		r = c.getResponsible()
+		self.assertTrue(r == "withdrawn")
+
+		# test for other (not organization, information system, or [Withdrawn)
 
 if __name__ == "__main__":
 	unittest.main()

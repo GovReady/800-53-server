@@ -75,7 +75,7 @@ def dep_resolve(graph, node, resolved):
 	if node in graph:
 		# print node 
 		sc = SecControl(node)
-		print "%s - %s " % (node, sc.title)
+		print "%s - %s (%s)" % (node, sc.title, sc.getResponsible())
 		# print "      edgees: %s" % (graph[node])
 		for edge in graph[node]:
 			if edge not in resolved:
