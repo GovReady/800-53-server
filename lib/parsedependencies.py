@@ -12,6 +12,10 @@ import os
 import sys
 import pprint
 
+sys.path.append(os.path.join('lib'))
+sys.path.append(os.path.join('data'))
+from seccontrol import SecControl
+
 # Config
 base_path = "./"
 dep_dir = "data/dependencies/"
@@ -69,7 +73,9 @@ def showEdges(graph, node):
 
 def dep_resolve(graph, node, resolved):
 	if node in graph:
-		print node 
+		# print node 
+		sc = SecControl(node)
+		print "%s - %s " % (node, sc.title)
 		# print "      edgees: %s" % (graph[node])
 		for edge in graph[node]:
 			if edge not in resolved:
@@ -81,7 +87,7 @@ def dep_resolve(graph, node, resolved):
 # Main
 # read list of files
 files = os.listdir(input_path)
-print files
+# print files
 
 dep_dict = {}
 
@@ -111,33 +117,41 @@ for file in files:
 					
 					if u == "None":
 						continue
-					print '"%s" -> "%s"' % (u, d)
+					# print '"%s" -> "%s"' % (u, d)
 
 					if d in dep_dict.keys():
 						dep_dict[d].append(u)
 					else:
 						dep_dict[d] = []
 						dep_dict[d].append(u)
-					print "%s dependencies are: %s" % (d, dep_dict[d])
+					# print "%s dependencies are: %s" % (d, dep_dict[d])
 
 
 print "\n ====== Dependency graph loaded ========\n"
 
-resolved = []
-showEdges(dep_dict, "CA-5")
-resolved = []
-showEdges(dep_dict, "CA-2")
+# resolved = []
+# showEdges(dep_dict, "CA-5")
+# resolved = []
+# showEdges(dep_dict, "CA-2")
 
-print " "
-resolved = []
-dep_resolve(dep_dict, "CA-2", resolved)
-print "Resolve ", "AU-4"
-resolved = []
-dep_resolve(dep_dict, "AU-4", resolved)
+# print " "
+# resolved = []
+# dep_resolve(dep_dict, "CA-2", resolved)
+# print "Resolve ", "AU-4"
+# resolved = []
+# dep_resolve(dep_dict, "AU-4", resolved)
 
-sc = raw_input("Resolve which control? ")
-resolved = []
-dep_resolve(dep_dict, sc, resolved)
+if __name__ == "__main__":
+    while (1==1):
+		control_input = raw_input("Resolve which control? ")
+		if control_input == "q":
+			exit()
+		sc = SecControl(control_input)
+		# print "%s - %s " % (sc.id, sc.title)
+		print "===================================="
+		resolved = []
+		dep_resolve(dep_dict, sc.id, resolved)
+		print "    "
 
 
 

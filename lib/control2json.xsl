@@ -19,7 +19,7 @@ This file provides a relitvely simple xslt transformation on 800-54v4 800-53-con
 to generate a set of json files representing the controls.
 
 usage: $> xsltproc - -stringparam paramname paramvalue control2json.xsl 800-53-controls.xml
-example: $>  xsltproc - -stringparam controlnumber AT-3 control2json.xsl 800-53-controls.xml
+example: $>  xsltproc - -stringparam controlnumber AT-3 lib/control2json.xsl data/800-53-controls.xml
 
 namespace notes: 
     It is necessary to explicitly define and use the default name space `xmlns="http://scap.nist.gov/schema/sp800-53/2.0"` 

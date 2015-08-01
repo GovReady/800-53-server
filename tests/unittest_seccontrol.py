@@ -27,7 +27,16 @@ class SecControlTest(unittest.TestCase):
 		c = SecControl(id)
 		self.assertTrue(c.title == "Error")		
 
+	def test_responsible(self):
+		id = "AT-3"
+		c = SecControl(id)
+		r = c.getResponsible()
+		self.assertTrue(r == "organization")
 
+		id = "AU-8"
+		c = SecControl(id)
+		r = c.getResponsible()
+		self.assertTrue(r == "information system")
 
 if __name__ == "__main__":
 	unittest.main()

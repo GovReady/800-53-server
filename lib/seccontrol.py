@@ -22,6 +22,7 @@ import os
 import sys
 import json
 import commands
+import re
 
 class SecControl(object):
     "represent 800-53 security controls"
@@ -50,7 +51,17 @@ class SecControl(object):
         
     def get_control_json(self):
         print json.dumps(self.details)
-        
+
+    def getResponsible(self):
+        m = re.match(r'The organization|The information system', self.description)
+        if m.group(0) == "The organization":
+            return "organization"
+        else:
+            if m.group(0) == "The information system":
+                return "information system"
+            else:
+                return "other"
+
 
 # if __name__ == "__main__":
 #     print "Class SecControl"
