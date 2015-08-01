@@ -4,6 +4,7 @@ import os
 import json
 
 sys.path.append(os.path.join('lib'))
+sys.path.append(os.path.join('data'))
 from seccontrol import SecControl
 
 class SecControlTest(unittest.TestCase):
