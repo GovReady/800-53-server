@@ -25,25 +25,22 @@ class SecControlTest(unittest.TestCase):
 	def test_details_nonexistent_control(self):
 		id = "AX-3"
 		c = SecControl(id)
-		self.assertTrue(c.title == "Error")		
+		self.assertTrue(c.title == None)		
 
 	def test_responsible(self):
 		# test "organization"
 		id = "AT-3"
 		c = SecControl(id)
-		r = c.getResponsible()
-		self.assertTrue(r == "organization")
+		self.assertTrue(c.responsible == "organization")
 
 		id = "AU-8"
 		c = SecControl(id)
-		r = c.getResponsible()
-		self.assertTrue(r == "information system")
+		self.assertTrue(c.responsible == "information system")
 
 		# test "[Withdrawn"
 		id = "SA-7"
 		c = SecControl("SA-7")
-		r = c.getResponsible()
-		self.assertTrue(r == "withdrawn")
+		self.assertTrue(c.responsible == "withdrawn")
 
 		# test for other (not organization, information system, or [Withdrawn)
 

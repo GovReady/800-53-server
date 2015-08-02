@@ -13,7 +13,7 @@ Visit [tbd] for the latest version.
 """
 
 __author__ = "Greg Elin (gregelin@gitmachines.com)"
-__version__ = "$Revision: 0.1 $"
+__version__ = "$Revision: 0.2 $"
 __date__ = "$Date: 2015/08/01 13:07:00 $"
 __copyright__ = "Copyright (c) 2015 GovReady PBC"
 __license__ = "GPL 3.0"
@@ -26,47 +26,35 @@ import re
 
 class SecControl(object):
     "represent 800-53 security controls"
-    
     def __init__(self, id):
         self.id = id
-        # Load control information
-        results = commands.getstatusoutput("xsltproc --stringparam controlnumber %s lib/control2json.xsl data/800-53-controls.xml" % self.id)
-        if results[0] == 0:
-            if len(results[1]) > 0:
-                # Command ran successfully
-                self.details = json.loads(results[1])
-                self.title = self.details["title"]
-                self.description = self.details["description"]
-            else:
-                # Raise error because we got a blank
-                self.details = json.loads('{"id": "xx", "error": "Failed to get security control information from 800-53 xml"}')
-                self.title = "Error"
-                self.description = "Error"
-        else:
-            # Error, failed to execute command
-            self.details = json.loads('{"id": "xx", "error": "Failed to get security control information from 800-53 xml"}')
-            self.title = "Error"
-            self.description = "Error"
+        self._load_control_from_xml()
         
-    def get_control_json(self):
-        self.details['responsible'] = self.getResponsible()
-        print json.dumps(self.details)
+    def _load_control_from_xml(self):
+        "load control detail form 800-53 xml"
+        results = commands.getstatusoutput("xsltproc --stringparam controlnumber %s lib/control2json.xsl data/800-53-controls.xml" % self.id)
+        if (results[0] == 0) and (len(results[1]) > 0):
+            self.details = json.loads(results[1])
+            self.title = self.details["title"]
+            self.description = self.details["description"]
+            self.responsible = self._get_responsible()
+        else:
+            self.details = json.loads('{"id": null, "error": "Failed to get security control information from 800-53 xml"}')
+            self.title = self.description = self.details = None
 
-    def getResponsible(self):
+    def _get_responsible(self):
+        "determine responsibility"
         m = re.match(r'The organization|The information system|\[Withdrawn', self.description)
         if m:
-            if m.group(0) == "The organization":
-                return "organization"
-            else:
-                if m.group(0) == "The information system":
-                    return "information system"
-                else:
-                    if m.group(0) == "[Withdrawn":
-                        return "withdrawn"
-                    else:
-                        return "other"
+            return {
+                'The organization': 'organization',
+                'The information system': 'information system',
+                '[Withdrawn': 'withdrawn'
+            }[m.group(0)]
         else:
             return "other"
 
-# if __name__ == "__main__":
-#     print "Class SecControl"
+    def get_control_json(self):
+        "produce json version of control detail"
+        print json.dumps(self.details)
+        # To Do: needs test
