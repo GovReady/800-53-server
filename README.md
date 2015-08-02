@@ -34,3 +34,13 @@ AU-3 - CONTENT OF AUDIT RECORDS (information system)
 AU-8 - TIME STAMPS (information system)
 AU-14 - SESSION AUDIT (information system)
 ```
+
+# Useful Links
+
+Resource                  | Link
+--------------------------|---------------------------------------------
+800-53 v4 PDF             | http://dx.doi.org/10.6028/NIST.SP.800-53Ar4
+800-53 v4 XML current     | https://nvd.nist.gov/static/feeds/xml/sp80053/rev4/800-53-controls.xml
+800-53 A v4 XML 06-06-2015  | https://nvd.nist.gov/static/feeds/xml/sp80053/rev4/800-53a-objectives.xml
+800-53 Assessment Cases (2010) | http://csrc.nist.gov/groups/SMA/fisma/assessment.html
+

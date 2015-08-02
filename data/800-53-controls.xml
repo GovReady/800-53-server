@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<controls:controls 
-    xmlns="http://scap.nist.gov/schema/sp800-53/2.0"
+<controls:controls xmlns="http://scap.nist.gov/schema/sp800-53/2.0"
     xmlns:controls="http://scap.nist.gov/schema/sp800-53/feed/2.0"
     xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    pub_date="2014-07-29T16:28:52.538-04:00"
-    xsi:schemaLocation="http://scap.nist.gov/schema/sp800-53/feed/2.0 http://scap.nist.gov/schema/sp800-53/feed/2.0/sp800-53-feed_2.0.xsd"
-    >
+    pub_date="2015-02-03T10:11:18.645-05:00"
+    xsi:schemaLocation="http://scap.nist.gov/schema/sp800-53/feed/2.0 http://scap.nist.gov/schema/sp800-53/feed/2.0/sp800-53-feed_2.0.xsd">
     <controls:control>
         <family>ACCESS CONTROL</family>
         <number>AC-1</number>
@@ -261,7 +259,7 @@
             </control-enhancement>
             <control-enhancement>
                 <number>AC-2 (9)</number>
-                <title>RESTRICTIONS ON USE OF SHARED GROUPS / ACCOUNTS</title>
+                <title>RESTRICTIONS ON USE OF SHARED / GROUP ACCOUNTS</title>
                 <statement>
                     <description>The organization only permits the use of shared/group accounts that meet [Assignment: organization-defined conditions for establishing shared/group accounts].</description>
                 </statement>
@@ -292,7 +290,7 @@
                     <description>The organization:</description>
                     <statement>
                         <number>AC-2 (12)(a)</number>
-                        <description>Monitors information system accounts for [Assignment: organization-defined atypical use]; and</description>
+                        <description>Monitors information system accounts for [Assignment: organization-defined atypical usage]; and</description>
                     </statement>
                     <statement>
                         <number>AC-2 (12)(b)</number>
@@ -327,7 +325,7 @@
         <baseline-impact>MODERATE</baseline-impact>
         <baseline-impact>HIGH</baseline-impact>
         <statement>
-            <description>The information system enforces approved authorizations for logical access to information and system resources in accordance with applicable access control policies.</description>
+            <description>The information system enforces approved authorizations for logical access to information           and system resources in accordance with applicable access control policies.</description>
         </statement>
         <supplemental-guidance>
             <description>Access control policies (e.g., identity-based policies, role-based policies, control matrices, cryptography) control access between active entities or subjects (i.e., users or processes acting on behalf of users) and passive entities or objects (e.g., devices, files, records, domains) in information systems. In addition to enforcing authorized access at the information system level and recognizing that information systems can host many applications and services in support of organizational missions and business operations, access enforcement mechanisms can also be employed at the application and service level to provide increased information security.</description>
@@ -378,14 +376,14 @@
                 <number>AC-3 (3)</number>
                 <title>MANDATORY ACCESS CONTROL</title>
                 <statement>
-                    <description>The information system enforces [Assignment: organization-defined mandatory access control policies] over all subjects and objects where the policy specifies that:</description>
+                    <description>The information system enforces [Assignment: organization-defined mandatory access control policy] over all subjects and objects where the policy:</description>
                     <statement>
                         <number>AC-3 (3)(a)</number>
-                        <description>The policy is uniformly enforced across all subjects and objects within the boundary of the information system;</description>
+                        <description>Is uniformly enforced across all subjects and objects within the boundary of the information system;</description>
                     </statement>
                     <statement>
                         <number>AC-3 (3)(b)</number>
-                        <description>A subject that has been granted access to information is constrained from doing any of the following;</description>
+                        <description>Specifies that a subject that has been granted access to information is constrained from doing any of the following;</description>
                         <statement>
                             <number>AC-3 (3)(b)(1)</number>
                             <description>Passing the information to unauthorized subjects or objects;</description>
@@ -409,7 +407,7 @@
                     </statement>
                     <statement>
                         <number>AC-3 (3)(c)</number>
-                        <description>[Assignment: Organized-defined subjects] may explicitly be granted [Assignment: organization-defined privileges (i.e., they are trusted subjects)] such that they are not limited by some or all of the above constraints.</description>
+                        <description>Specifies that [Assignment: organization-defined subjects] may explicitly be granted [Assignment: organization-defined privileges (i.e., they are trusted subjects)] such that they are not limited by some or all of the above constraints.</description>
                     </statement>
                 </statement>
                 <supplemental-guidance>
@@ -422,7 +420,7 @@
                 <number>AC-3 (4)</number>
                 <title>DISCRETIONARY ACCESS CONTROL</title>
                 <statement>
-                    <description>The information system enforces [Assignment: organization-defined discretionary access control policies] over defined subjects and objects where the policy specifies that a subject that has been granted access to information can do one or more of the following:</description>
+                    <description>The information system enforces [Assignment: organization-defined discretionary access control policy] over defined subjects and objects where the policy specifies that a subject that has been granted access to information can do one or more of the following:</description>
                     <statement>
                         <number>AC-3 (4)(a)</number>
                         <description>Pass the  information to any other subjects or objects;</description>
@@ -615,7 +613,7 @@ Organizations commonly employ information flow control policies and enforcement 
                 <number>AC-4 (7)</number>
                 <title>ONE-WAY FLOW MECHANISMS</title>
                 <statement>
-                    <description>The information system enforces [Assignment: organization-defined one-way flows] using hardware mechanisms.</description>
+                    <description>The information system enforces [Assignment: organization-defined one-way information flows] using hardware mechanisms.</description>
                 </statement>
             </control-enhancement>
             <control-enhancement>
@@ -3148,7 +3146,7 @@ This control does not apply to the use of external information systems to access
                 <title>SYSTEM-WIDE / TIME-CORRELATED AUDIT TRAIL</title>
                 <baseline-impact>HIGH</baseline-impact>
                 <statement>
-                    <description>The information system compiles audit records from [Assignment: organization-defined information system components] into a system-wide (logical or physical) audit trail that is time-correlated to within [Assignment: organization-defined level of tolerance for relationship between time stamps of individual records in the audit trail].</description>
+                    <description>The information system compiles audit records from [Assignment: organization-defined information system components] into a system-wide (logical or physical) audit trail that is time-correlated to within [Assignment: organization-defined level of tolerance for the relationship between time stamps of individual records in the audit trail].</description>
                 </statement>
                 <supplemental-guidance>
                     <description>Audit trails are time-correlated if the time stamps in the individual audit records can be reliably related to the time stamps in other audit records to achieve a time ordering of the records within organizational tolerances.</description>
@@ -3738,8 +3736,11 @@ To satisfy annual assessment requirements, organizations can use assessment resu
             <control-enhancement>
                 <number>CA-7 (2)</number>
                 <title>TYPES OF ASSESSMENTS</title>
+                <withdrawn>
+                    <incorporated-into>CA-2</incorporated-into>
+                </withdrawn>
                 <statement>
-                    <description>[Withdrawn: Incorporated into CA-2.]</description>
+                    <description>[Withdrawn: Incorporated into CA-2].</description>
                 </statement>
             </control-enhancement>
             <control-enhancement>
@@ -5424,7 +5425,7 @@ Common secure configurations (also referred to as security configuration checkli
             </statement>
             <statement>
                 <number>CP-7c.</number>
-                <description>Ensures that the alternate processing site provides information security safeguards equivalent to that of the primary site.</description>
+                <description>Ensures that the alternate processing site provides information security safeguards equivalent to those of the primary site.</description>
             </statement>
         </statement>
         <supplemental-guidance>
@@ -6055,7 +6056,7 @@ Organizations can satisfy the identification and authentication requirements in 
                 <number>IA-2 (10)</number>
                 <title>SINGLE SIGN-ON</title>
                 <statement>
-                    <description>The information system provides a single sign-on capability for [Assignment: organization-defined list of information system accounts and services].</description>
+                    <description>The information system provides a single sign-on capability for [Assignment: organization-defined information system accounts and services].</description>
                 </statement>
                 <supplemental-guidance>
                     <description>Single sign-on enables users to log in once and gain access to multiple information system resources. Organizations consider the operational efficiencies provided by single sign-on capabilities with the increased risk from disclosures of single authenticators providing access to multiple system resources.</description>
@@ -6280,10 +6281,10 @@ Organizations can satisfy the identification and authentication requirements in 
                 <number>IA-4 (3)</number>
                 <title>MULTIPLE FORMS OF CERTIFICATION</title>
                 <statement>
-                    <description>The organization requires multiple forms of certification of individual identification such as documentary evidence or a combination of documents and biometrics be presented to the registration authority.</description>
+                    <description>The organization requires multiple forms of certification of individual identification be presented to the registration authority.</description>
                 </statement>
                 <supplemental-guidance>
-                    <description>Requiring multiple forms of identification reduces the likelihood of individuals using fraudulent identification to establish an identity, or at least increases the work factor of potential adversaries.</description>
+                    <description>Requiring multiple forms of identification, such as documentary evidence or a combination of documents and biometrics, reduces the likelihood of individuals using fraudulent identification to establish an identity, or at least increases the work factor of potential adversaries.</description>
                 </supplemental-guidance>
             </control-enhancement>
             <control-enhancement>
@@ -6577,7 +6578,7 @@ Organizations can satisfy the identification and authentication requirements in 
             </control-enhancement>
             <control-enhancement>
                 <number>IA-5 (12)</number>
-                <title>BIOMETRIC AUTHENTICATION</title>
+                <title>BIOMETRIC-BASED AUTHENTICATION</title>
                 <statement>
                     <description>The information system, for biometric-based authentication, employs mechanisms that satisfy [Assignment: organization-defined biometric quality requirements].</description>
                 </statement>
@@ -7045,7 +7046,7 @@ Organizations can satisfy the identification and authentication requirements in 
             </statement>
             <statement>
                 <number>IR-4c.</number>
-                <description>Incorporates lessons learned from ongoing incident handling activities into incident response procedures, training, and testing/exercises, and implements the resulting changes accordingly.</description>
+                <description>Incorporates lessons learned from ongoing incident handling activities into incident response procedures, training, and testing, and implements the resulting changes accordingly.</description>
             </statement>
         </statement>
         <supplemental-guidance>
@@ -7815,7 +7816,7 @@ Organizations can satisfy the identification and authentication requirements in 
                     </statement>
                     <statement>
                         <number>MA-4 (3)(b)</number>
-                        <description>Removes the component to be serviced from the information system and prior to nonlocal maintenance or diagnostic services, sanitizes the component (with regard to organizational information) before removal from organizational facilities, and after the service is performed, inspects and sanitizes the component (with regard to potentially malicious software) before reconnecting the component to the information system.</description>
+                        <description>Removes the component to be serviced from the information system prior to nonlocal maintenance or diagnostic services, sanitizes the component (with regard to organizational information) before removal from organizational facilities, and after the service is performed, inspects and sanitizes the component (with regard to potentially malicious software) before reconnecting the component to the information system.</description>
                     </statement>
                 </statement>
                 <supplemental-guidance>
@@ -8533,7 +8534,7 @@ Physical and technical safeguards for media are commensurate with the security c
                     <description>The organization prohibits the use of sanitization-resistant media in organizational information systems.</description>
                 </statement>
                 <supplemental-guidance>
-                    <description>Sanitation-resistance applies to the capability to purge information from media. Certain types of media do not support sanitize commands, or if supported, the interfaces are not supported in a standardized way across these devices. Sanitation-resistant media include, for example, compact flash, embedded flash on boards and devices, solid state drives, and USB removable media.</description>
+                    <description>Sanitization-resistance applies to the capability to purge information from media. Certain types of media do not support sanitize commands, or if supported, the interfaces are not supported in a standardized way across these devices. Sanitization-resistant media include, for example, compact flash, embedded flash on boards and devices, solid state drives, and USB removable media.</description>
                     <related>MP-6</related>
                 </supplemental-guidance>
             </control-enhancement>
@@ -9739,7 +9740,7 @@ Security plans need not be single documents; the plans can be a collection of va
             </statement>
             <statement>
                 <number>PL-4d.</number>
-                <description>Requires individuals who have signed a previous version of the rules of behavior to read and resign when the rules of behavior are revised/updated.</description>
+                <description>Requires individuals who have signed a previous version of the rules of behavior to read and re-sign when the rules of behavior are revised/updated.</description>
             </statement>
         </statement>
         <supplemental-guidance>
@@ -10447,7 +10448,7 @@ In today�s modern architecture, it is becoming less common for organizations t
             </statement>
             <statement>
                 <number>RA-2c.</number>
-                <description>Ensures that the security categorization decision is reviewed and approved by the authorizing official or authorizing official designated representative.</description>
+                <description>Ensures that the authorizing official or authorizing official designated representative reviews and approves the security categorization decision.</description>
             </statement>
         </statement>
         <supplemental-guidance>
@@ -11045,7 +11046,8 @@ Security functionality, assurance, and documentation requirements are expressed 
                     <description>The organization employs only information technology products on the FIPS 201-approved products list for Personal Identity Verification (PIV) capability implemented within organizational information systems.</description>
                 </statement>
                 <supplemental-guidance>
-                    <related>IA-2; IA-8</related>
+                    <related>IA-2</related>
+                    <related>IA-8</related>
                 </supplemental-guidance>
             </control-enhancement>
         </control-enhancements>
@@ -11141,7 +11143,7 @@ Security functionality, assurance, and documentation requirements are expressed 
             </statement>
             <statement>
                 <number>SA-5c.</number>
-                <description>Documents attempts to obtain information system, system component, or information system service documentation when such documentation is either unavailable or nonexistent and [Assignment: organization-defined actions] in response;</description>
+                <description>Documents attempts to obtain information system, system component, or information system service documentation when such documentation is either unavailable or nonexistent and takes [Assignment: organization-defined actions] in response;</description>
             </statement>
             <statement>
                 <number>SA-5d.</number>
@@ -11545,7 +11547,7 @@ Security functionality, assurance, and documentation requirements are expressed 
                     </statement>
                     <statement>
                         <number>SA-11 (3)(b)</number>
-                        <description>Ensures that the independent agent either is provided with sufficient information to complete the verification process or has been granted the authority to obtain such information.</description>
+                        <description>Ensures that the independent agent is either provided with sufficient information to complete the verification process or granted the authority to obtain such information.</description>
                     </statement>
                 </statement>
                 <supplemental-guidance>
@@ -11568,7 +11570,7 @@ Security functionality, assurance, and documentation requirements are expressed 
             </control-enhancement>
             <control-enhancement>
                 <number>SA-11 (5)</number>
-                <title>PENETRATION TESTING / ANALYSIS</title>
+                <title>PENETRATION TESTING</title>
                 <statement>
                     <description>The organization requires the developer of the information system, system component, or information system service to perform penetration testing at [Assignment: organization-defined breadth/depth] and with [Assignment: organization-defined constraints].</description>
                 </statement>
@@ -11638,7 +11640,7 @@ Security functionality, assurance, and documentation requirements are expressed 
             <description>The organization protects against supply chain threats to the information system, system component, or information system service by employing [Assignment: organization-defined security safeguards] as part of a comprehensive, defense-in-breadth information security strategy.</description>
         </statement>
         <supplemental-guidance>
-            <description>Information systems (including system components that compose those systems) need to be protected throughout the system development life cycle (i.e., during design, development, manufacturing, packaging, assembly, distribution, system integration, operations, maintenance, and retirement). Protection of organizational information systems is accomplished through threat awareness, by the identification, management, and reduction of vulnerabilities at each phase of the life cycle and the use of complementary, mutually reinforcing strategies to respond to risk. Organizations consider implementing a standardized process to address supply chain risk with respect to information systems and system components, and to educate the acquisition workforce on threats, risk, and required security controls. Organizations use the acquisition/procurement processes to require supply chain entities to implement necessary security safeguards to: (i) reduce the likelihood of unauthorized modifications at each stage in the supply chain; and (ii) protect information systems and information system components, prior to taking delivery of such systems/components. This control enhancement also applies to information system services. Security safeguards include, for example: (i) security controls for development systems, development facilities, and external connections to development systems; (ii) vetting development personnel; and (iii) use of tamper-evident packaging during shipping/warehousing. Methods for reviewing and protecting development plans, evidence, and documentation are commensurate with the security category or classification level of the information system. Contracts may specify documentation protection requirements.</description>
+            <description>Information systems (including system components that compose those systems) need to be protected throughout the system development life cycle (i.e., during design, development, manufacturing, packaging, assembly, distribution, system integration, operations, maintenance, and retirement). Protection of organizational information systems is accomplished through threat awareness, by the identification, management, and reduction of vulnerabilities at each phase of the life cycle and the use of complementary, mutually reinforcing strategies to respond to risk. Organizations consider implementing a standardized process to address supply chain risk with respect to information systems and system components, and to educate the acquisition workforce on threats, risk, and required security controls. Organizations use the acquisition/procurement processes to require supply chain entities to implement necessary security safeguards to: (i) reduce the likelihood of unauthorized modifications at each stage in the supply chain; and (ii) protect information systems and information system components, prior to taking delivery of such systems/components. This control also applies to information system services. Security safeguards include, for example: (i) security controls for development systems, development facilities, and external connections to development systems; (ii) vetting development personnel; and (iii) use of tamper-evident packaging during shipping/warehousing. Methods for reviewing and protecting development plans, evidence, and documentation are commensurate with the security category or classification level of the information system. Contracts may specify documentation protection requirements.</description>
             <related>AT-3</related>
             <related>CM-8</related>
             <related>IR-4</related>
@@ -11750,7 +11752,6 @@ Security functionality, assurance, and documentation requirements are expressed 
                 </statement>
                 <supplemental-guidance>
                     <description>Supply chain information includes, for example: user identities; uses for information systems, information system components, and information system services; supplier identities; supplier processes; security requirements; design specifications; testing and evaluation results; and system/component configurations. This control enhancement expands the scope of OPSEC to include suppliers and potential suppliers. OPSEC is a process of identifying critical information and subsequently analyzing friendly actions attendant to operations and other activities to: (i) identify those actions that can be observed by potential adversaries; (ii) determine indicators that adversaries might obtain that could be interpreted or pieced together to derive critical information in sufficient time to cause harm to organizations; (iii) implement safeguards or countermeasures to eliminate or reduce to an acceptable level, exploitable vulnerabilities; and (iv) consider how aggregated information may compromise the confidentiality of users or uses of the supply chain. OPSEC may require organizations to withhold critical mission/business information from suppliers and may include the use of intermediaries to hide the end use, or users, of information systems, system components, or information system services.</description>
-                    <related>PE-21</related>
                 </supplemental-guidance>
             </control-enhancement>
             <control-enhancement>
@@ -12657,7 +12658,7 @@ Assurance is also based on the assessment of evidence produced during the system
         <baseline-impact>MODERATE</baseline-impact>
         <baseline-impact>HIGH</baseline-impact>
         <statement>
-            <description>The information system protects against or limits the effects of the following types of denial of service attacks: [Assignment: organization-defined types of denial of service attacks or reference to source for such information] by employing [Assignment: organization-defined security safeguards].</description>
+            <description>The information system protects against or limits the effects of the following types of denial of service attacks: [Assignment: organization-defined types of denial of service attacks or references to sources for such information] by employing [Assignment: organization-defined security safeguards].</description>
         </statement>
         <supplemental-guidance>
             <description>A variety of technologies exist to limit, or in some cases, eliminate the effects of denial of service attacks. For example, boundary protection devices can filter certain types of packets to protect information system components on internal organizational networks from being directly affected by denial of service attacks. Employing increased capacity and bandwidth combined with service redundancy may also reduce the susceptibility to denial of service attacks.</description>
@@ -12905,7 +12906,7 @@ Assurance is also based on the assessment of evidence produced during the system
                 <number>SC-7 (11)</number>
                 <title>RESTRICT INCOMING COMMUNICATIONS TRAFFIC</title>
                 <statement>
-                    <description>The information system only allows incoming communications from [Assignment: organization-defined authorized sources] routed to [Assignment: organization-defined authorized destinations].</description>
+                    <description>The information system only allows incoming communications from [Assignment: organization-defined authorized sources] to be routed to [Assignment: organization-defined authorized destinations].</description>
                 </statement>
                 <supplemental-guidance>
                     <description>This control enhancement provides determinations that source and destination address pairs represent authorized/allowed communications. Such determinations can be based on several factors including, for example, the presence of source/destination address pairs in lists of authorized/allowed communications, the absence of address pairs in lists of unauthorized/disallowed pairs, or meeting more general rules for authorized/allowed source/destination pairs.</description>
@@ -14879,7 +14880,15 @@ Assurance is also based on the assessment of evidence produced during the system
             </statement>
             <statement>
                 <number>SI-4c.</number>
-                <description>Deploys monitoring devices: (i) strategically within the information system to collect organization-determined essential information; and (ii) at ad hoc locations within the system to track specific types of transactions of interest to the organization;</description>
+                <description>Deploys monitoring devices:</description>
+                <statement>
+                    <number>SI-4c.1.</number>
+                    <description>Strategically within the information system to collect organization-determined essential information; and</description>
+                </statement>
+                <statement>
+                    <number>SI-4c.2.</number>
+                    <description>At ad hoc locations within the system to track specific types of transactions of interest to the organization;</description>
+                </statement>
             </statement>
             <statement>
                 <number>SI-4d.</number>
@@ -15130,7 +15139,7 @@ Assurance is also based on the assessment of evidence produced during the system
             </control-enhancement>
             <control-enhancement>
                 <number>SI-4 (20)</number>
-                <title>PRIVILEGED USER</title>
+                <title>PRIVILEGED USERS</title>
                 <statement>
                     <description>The organization implements [Assignment: organization-defined additional monitoring] of privileged users.</description>
                 </statement>
@@ -15290,7 +15299,7 @@ Assurance is also based on the assessment of evidence produced during the system
                 <number>SI-6 (2)</number>
                 <title>AUTOMATION SUPPORT FOR DISTRIBUTED TESTING</title>
                 <statement>
-                    <description>The information system implements automated mechanisms to support for the management of distributed security testing.</description>
+                    <description>The information system implements automated mechanisms to support the management of distributed security testing.</description>
                 </statement>
                 <supplemental-guidance>
                     <related>SI-2</related>
@@ -15670,7 +15679,7 @@ Assurance is also based on the assessment of evidence produced during the system
                     <description>The organization accounts for timing interactions among information system components in determining appropriate responses for invalid inputs.</description>
                 </statement>
                 <supplemental-guidance>
-                    <description>In addressing invalid information system inputs received across protocol interfaces, timing interfaces become relevant, where one protocol needs to consider the impact of the error response on other protocols within the protocol stack. For example, 802.11 standard wireless network protocols do not interact well with Transmission Control Protocols (TCP) when packets are dropped (which could be due to invalid packet input). TCP assumes packet losses are due to congestion, while packets lost over 802.11 links are typically dropped due to collisions or noise on the link. If TCP makes a congestion response, it takes precisely the wrong action in response to a collision event. Adversaries may be able to use apparently acceptable individual behaviors of the protocols in concert to achieve adverse effects through suitable construction of invalid input.</description>
+                    <description>In addressing invalid information system inputs received across protocol interfaces, timing interactions become relevant, where one protocol needs to consider the impact of the error response on other protocols within the protocol stack. For example, 802.11 standard wireless network protocols do not interact well with Transmission Control Protocols (TCP) when packets are dropped (which could be due to invalid packet input). TCP assumes packet losses are due to congestion, while packets lost over 802.11 links are typically dropped due to collisions or noise on the link. If TCP makes a congestion response, it takes precisely the wrong action in response to a collision event. Adversaries may be able to use apparently acceptable individual behaviors of the protocols in concert to achieve adverse effects through suitable construction of invalid input.</description>
                 </supplemental-guidance>
             </control-enhancement>
             <control-enhancement>
@@ -15881,7 +15890,7 @@ Non-persistent system components can be implemented, for example, by periodicall
         </supplemental-guidance>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-1</number>
         <title>INFORMATION SECURITY PROGRAM PLAN</title>
         <statement>
@@ -15927,7 +15936,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </supplemental-guidance>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-2</number>
         <title>SENIOR INFORMATION SECURITY OFFICER</title>
         <statement>
@@ -15938,7 +15947,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </supplemental-guidance>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-3</number>
         <title>INFORMATION SECURITY RESOURCES</title>
         <statement>
@@ -15968,7 +15977,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-4</number>
         <title>PLAN OF ACTION AND MILESTONES PROCESS</title>
         <statement>
@@ -16008,7 +16017,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-5</number>
         <title>INFORMATION SYSTEM INVENTORY</title>
         <statement>
@@ -16024,7 +16033,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-6</number>
         <title>INFORMATION SECURITY MEASURES OF PERFORMANCE</title>
         <statement>
@@ -16040,7 +16049,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-7</number>
         <title>ENTERPRISE ARCHITECTURE</title>
         <statement>
@@ -16061,7 +16070,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-8</number>
         <title>CRITICAL INFRASTRUCTURE PLAN</title>
         <statement>
@@ -16084,7 +16093,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-9</number>
         <title>RISK MANAGEMENT STRATEGY</title>
         <statement>
@@ -16116,7 +16125,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-10</number>
         <title>SECURITY AUTHORIZATION PROCESS</title>
         <statement>
@@ -16148,7 +16157,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-11</number>
         <title>MISSION/BUSINESS PROCESS DEFINITION</title>
         <statement>
@@ -16178,7 +16187,7 @@ Organizations have the flexibility to describe common controls in a single docum
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-12</number>
         <title>INSIDER THREAT PROGRAM</title>
         <statement>
@@ -16190,7 +16199,8 @@ Insider threat programs can leverage the existence of incident handling teams or
             <related>AC-6</related>
             <related>AT-2</related>
             <related>AU-6</related>
-            <related>AU-7- AU-10</related>
+            <related>AU-7</related>
+            <related>AU-10</related>
             <related>AU-12</related>
             <related>AU-13</related>
             <related>CA-7</related>
@@ -16215,7 +16225,7 @@ Insider threat programs can leverage the existence of incident handling teams or
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-13</number>
         <title>INFORMATION SECURITY WORKFORCE</title>
         <statement>
@@ -16228,7 +16238,7 @@ Insider threat programs can leverage the existence of incident handling teams or
         </supplemental-guidance>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-14</number>
         <title>TESTING, TRAINING, AND MONITORING</title>
         <statement>
@@ -16274,7 +16284,7 @@ Insider threat programs can leverage the existence of incident handling teams or
         </references>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-15</number>
         <title>CONTACTS WITH SECURITY GROUPS AND ASSOCIATIONS</title>
         <statement>
@@ -16298,7 +16308,7 @@ Insider threat programs can leverage the existence of incident handling teams or
         </supplemental-guidance>
     </controls:control>
     <controls:control>
-        <family>Program Management</family>
+        <family>PROGRAM MANAGEMENT</family>
         <number>PM-16</number>
         <title>THREAT AWARENESS PROGRAM</title>
         <statement>
