@@ -5,27 +5,24 @@ Prototype of making fisma 800-53 controls interactive
 Create a python class that generates basic information about a FISMA 800-53 security control including:
 - [x] Full name of control
 - [x] Who has responsibility for control (e.g., organization or information system)
-- [-] Listing of control dependencies (e.g., precursor controls)
-- [ ] Visual depiction of control dependencies
+- [x] Listing of control dependencies (e.g., precursor controls)
+- [x] Visual depiction of control dependencies
 
-# Testing
-```
-python tests/unittest_seccontrol.py 
-```
+# Warning
+This is early code. The graph methods *may* have errors. 
 
-# List dependencies of a control
-Run `parsedependencies.py` from root of repo.
+# List and visualize dependencies of a control
+Run `viz_control_precursor.py` from root of repo.
 
 ```
-python lib/parsedependencies.py
+python lib/viz_control_precursor.py
 ```
 
 Example output:
 ```
- ====== Dependency graph loaded ========
-
 Resolve which control? AU-7
 ====================================
+AU-7 :  ['AU-2', 'AU-3', 'AU-8', 'AU-14']
 AU-7 - AUDIT REDUCTION AND REPORT GENERATION (information system)
 AU-2 - AUDIT EVENTS (organization)
 RA-3 - RISK ASSESSMENT (organization)
@@ -33,17 +30,28 @@ PM-9 - RISK MANAGEMENT STRATEGY (organization)
 AU-3 - CONTENT OF AUDIT RECORDS (information system)
 AU-8 - TIME STAMPS (information system)
 AU-14 - SESSION AUDIT (information system)
+   
+Rendering precursor graph
+nodes:  ['AU-7', 'AU-2', 'RA-3', 'PM-9', 'AU-3', 'AU-8', 'AU-14']
+edges:  [('AU-2', 'AU-7'), ('AU-3', 'AU-7'), ('AU-8', 'AU-7'), ('AU-14', 'AU-7'), ('RA-3', 'AU-2'), ('PM-9', 'RA-3'), ('AU-2', 'AU-3'), ('AU-2', 'AU-8'), ('AU-2', 'AU-14')]
+svg: output/img/AU-7-precursors.png
+
+```
+
+# Testing
+```
+python tests/unittest_seccontrol.py 
 ```
 
 # Files
 
 Files                     | Description
 --------------------------|---------------------------------------------
+lib/viz_control_precursor.py | Generates precursor list and graphviz of precursors for security control
 lib/control2json.xsl      | XSL transformation that creates json version of control from 800-53.xml
 lib/seccontrol.py         | Security Control class, provides information about a security control
-lib/parsedependencies.py  | Produces dependencies of precursor security controls based on 800-53A Assessment docs
-lib/vizgraph.py           | (early study) Generates graphviz dot file and graphic from within python
-lib/viz_control_precursor.py | Generates precursor list and graphviz of precursors for security control
+lib/parsedependencies.py  | (study) Produces dependencies of precursor security controls based on 800-53A Assessment docs
+lib/vizgraph.py           | (study) Generates graphviz dot file and graphic from within python
 
 
 # Useful Links
