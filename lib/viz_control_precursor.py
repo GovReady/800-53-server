@@ -224,7 +224,7 @@ if __name__ == "__main__":
 			add_nodes(digraph(), resolved),
 			edges
 		).render("output/img/%s-precursors" % sc.id)
-		print "svg: output/img/%s-precursors.%s" % (sc.id, vizformat)
+		print "image: output/img/%s-precursors.%s" % (sc.id, vizformat)
 
 		print "    "
 

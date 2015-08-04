@@ -39,7 +39,7 @@ AU-14 - SESSION AUDIT (information system)
 Rendering precursor graph
 nodes:  ['AU-7', 'AU-2', 'RA-3', 'PM-9', 'AU-3', 'AU-8', 'AU-14']
 edges:  [('AU-2', 'AU-7'), ('AU-3', 'AU-7'), ('AU-8', 'AU-7'), ('AU-14', 'AU-7'), ('RA-3', 'AU-2'), ('PM-9', 'RA-3'), ('AU-2', 'AU-3'), ('AU-2', 'AU-8'), ('AU-2', 'AU-14')]
-svg: output/img/AU-7-precursors.png
+image: output/img/AU-7-precursors.png
 
 ```
 
