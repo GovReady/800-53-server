@@ -9,7 +9,12 @@ Create a python class that generates basic information about a FISMA 800-53 secu
 - [x] Visual depiction of control dependencies
 
 # Warning
-This is early code. The graph methods *may* have errors. 
+This is early code. The graph methods *may* have errors.
+
+# Requirements
+- Python 2.7
+- xsltproc
+- Graphviz
 
 # Visualize dependencies of a 800-53 security control
 Run `viz_control_precursor.py` from root of repo.
