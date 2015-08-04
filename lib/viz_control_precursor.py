@@ -4,17 +4,21 @@
 Run from project root.
 Assumes data files are in data/dependencies
 
-usage: python lib/parsedependencies.py
+usage: python lib/viz_control_precursor.py
 
 """
 import re
 import os
 import sys
 import pprint
+import graphviz as gv
 
 sys.path.append(os.path.join('lib'))
 sys.path.append(os.path.join('data'))
 from seccontrol import SecControl
+
+import functools
+
 
 # Config
 base_path = "./"
@@ -24,11 +28,33 @@ out_dir = ""
 log_dir = "./"
 # tmp_dir = "sandbox/tmp/"
 
+# graphviz image format
+vizformat = 'png'
+graph = functools.partial(gv.Graph, format=vizformat)
+digraph = functools.partial(gv.Digraph, format=vizformat)
+
+
 # Change these for a given run
 input_path = base_path + dep_dir
 output_path = base_path + out_dir
 
 # Functions
+
+def add_nodes(graph, nodes):
+	for n in nodes:
+		if isinstance(n, tuple):
+			graph.node(n[0], **n[1])
+		else:
+			graph.node(n)
+	return graph
+
+def add_edges(graph, edges):
+	for e in edges:
+		if isinstance(e[0], tuple):
+			graph.edge(*e[0], **e[1])
+		else:
+			graph.edge(*e)
+	return graph
 
 def read_file_into_array(file, delimiter="\n"):
 	"""Returns contents of file in array split on the splitter text
@@ -176,14 +202,29 @@ if __name__ == "__main__":
 		# print "%s - %s " % (sc.id, sc.title)
 		print "===================================="
 		print sc.id, ": ", dep_dict[sc.id]
+
+
+
+		# work out and print dependency list
 		resolved = []
-		# dep_resolve(dep_dict, sc.id, resolved)
-		precursor_list(dep_dict, sc.id, resolved)
-		print resolved
+		dep_resolve(dep_dict, sc.id, resolved)
+
+		# work out, print, and viz precursor graph
+		nodes = []
+		precursor_list(dep_dict, sc.id, nodes)
+		print "   "
+		print "Rendering precursor graph"
+		print "nodes: ", nodes
 		edges = []
-		for node in resolved:
+		for node in nodes:
 			precursor_edges(dep_dict, node, edges)
-		print edges
+		print "edges: ", edges
+
+		add_edges(
+			add_nodes(digraph(), resolved),
+			edges
+		).render("output/img/%s-precursors" % sc.id)
+		print "svg: output/img/%s-precursors.%s" % (sc.id, vizformat)
 
 		print "    "
 

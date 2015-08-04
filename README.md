@@ -35,6 +35,17 @@ AU-8 - TIME STAMPS (information system)
 AU-14 - SESSION AUDIT (information system)
 ```
 
+# Files
+
+Files                     | Description
+--------------------------|---------------------------------------------
+lib/control2json.xsl      | XSL transformation that creates json version of control from 800-53.xml
+lib/seccontrol.py         | Security Control class, provides information about a security control
+lib/parsedependencies.py  | Produces dependencies of precursor security controls based on 800-53A Assessment docs
+lib/vizgraph.py           | (early study) Generates graphviz dot file and graphic from within python
+lib/viz_control_precursor.py | Generates precursor list and graphviz of precursors for security control
+
+
 # Useful Links
 
 Resource                  | Link
