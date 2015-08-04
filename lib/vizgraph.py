@@ -50,3 +50,25 @@ add_edges(
     ('PM-9', 'RA-3') ]
 ).render('output/img/AU-5-precursors')
 
+add_edges(
+    add_nodes(digraph(), ['AU-5', 'AU-2', 'RA-3', 'PM-9', 'AU-3', 'AU-8', 'AU-14']),
+    [('AU-2', 'AU-5'), ('AU-3', 'AU-5'), ('AU-8', 'AU-5'), ('AU-14', 'AU-5'), ('RA-3', 'AU-2'), ('PM-9', 'RA-3'), ('AU-2', 'AU-3'), ('AU-2', 'AU-8'), ('AU-2', 'AU-14')]
+).render('output/img/AU-5.v2-precursors')
+
+
+add_edges(
+	add_nodes(digraph(), ['SA-2', 'PM-3', 'PM-1', 'PM-9', 'PM-7', 'PM-11', 'SA-3', 'SA-8']),
+	[('PM-3', 'SA-2'), ('PM-7', 'SA-2'), ('PM-11', 'SA-2'), ('SA-3', 'SA-2'), ('SA-8', 'SA-2'),
+	('PM-1', 'PM-3'), ('PM-9', 'PM-3'),
+	('PM-9', 'PM-1'),
+	('PM-9', 'PM-7'),
+	('PM-9', 'PM-11'),
+	('PM-7', 'SA-3'), ('PM-11', 'SA-3'), ('SA-8', 'SA-3')]
+).render('output/img/SA-2-precursors')
+
+add_edges(
+	add_nodes(digraph(), ['SA-2', 'PM-3', 'PM-1', 'PM-9', 'PM-7', 'PM-11', 'SA-3', 'SA-8']),
+	[('PM-3', 'SA-2'), ('PM-7', 'SA-2'), ('PM-11', 'SA-2'), ('SA-3', 'SA-2'), ('SA-8', 'SA-2'), ('PM-1', 'PM-3'), ('PM-9', 'PM-3'),
+    ('PM-9', 'PM-1'), ('PM-9', 'PM-7'), ('PM-9', 'PM-11'), ('PM-7', 'SA-3'), ('PM-11', 'SA-3'), ('SA-8', 'SA-3')]
+).render('output/img/SA-2-precursors.v3')
+
