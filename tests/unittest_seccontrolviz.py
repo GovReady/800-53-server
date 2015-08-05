@@ -46,7 +46,7 @@ class SecControlVizTest(unittest.TestCase):
 		# print "nodes: ", cv.nodes
 		self.assertTrue(cv.nodes == ['AU-3', 'AU-2', 'RA-3', 'PM-9'])
 
-	def test_setting_node_options_by_id(self):
+	def test_node_options_by_id(self):
 		id = "AU-3"
 		cv = SecControlViz(id)
 		node_options = cv.node_options_by_id(id)
