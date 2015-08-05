@@ -48,6 +48,7 @@ class SecControlViz(object):
 
 		# load other 
 		self.resolved = []
+		self.nodes = []
 
 	def _load_graph_from_dependency_files(self):
 		"load graph from reading dependency files"
@@ -129,8 +130,6 @@ class SecControlViz(object):
 				graph.edge(*e)
 		return graph
 
-
-
 	def write_array_into_file(self, text_array, file, delimiter="\n" ):
 		try:
 			# change this to append...
@@ -146,7 +145,9 @@ class SecControlViz(object):
 		else:
 			return False
 
-	def node_options(self, node):
+	def node_options_by_id(self, node):
+		""" return options for single node id """
+		# Pass in options to method
 		options = {}
 		sc = SecControl(node)
 		options['label'] = "%s\n%s" % (node, sc.title)
@@ -200,7 +201,7 @@ class SecControlViz(object):
 			if node not in resolved:
 				resolved.append(node)
 				for precursor in graph[node]:
-					precursor_list(graph, precursor, resolved)
+					self.precursor_list(graph, precursor, resolved)
 
 	def precursor_edges(self, graph, node, edges):
 		if node in graph:
