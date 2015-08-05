@@ -29,7 +29,7 @@ log_dir = "./"
 # tmp_dir = "sandbox/tmp/"
 
 # graphviz image format
-vizformat = 'png'
+vizformat = 'svg'
 graph = functools.partial(gv.Graph, format=vizformat)
 digraph = functools.partial(gv.Digraph, format=vizformat)
 
@@ -91,6 +91,24 @@ def write_array_into_file(text_array, file, delimiter="\n" ):
 	else:
 		return False
 
+def node_options(node):
+	options = {}
+	sc = SecControl(node)
+	options['label'] = "%s\n%s" % (node, sc.title)
+	options['shape'] = "box3d"
+	options['fontname'] = "arial"
+	options['fontsize'] = "12"
+	# options['fontcolor'] = "blue"
+	# color code by responsibility
+	options['fontcolor'] = {'organization': 'blue', 'information system': 'red', 'withdrawn': 'gray'}[sc.responsible]
+	options['color'] = {'organization': 'blue', 'information system': 'red', 'withdrawn': 'gray'}[sc.responsible]
+	return options
+
+def node_tuples(nodes):
+	""" convert simple array of nodes to node tuples having options """
+	tup = tuple((node, node_options(node)) for node in nodes)
+	return list(tup)
+
 def showEdges(graph, node):
 	if node in graph:
 		print "%s edges: %s" % (node, graph[node])
@@ -116,7 +134,6 @@ def precursor_graph(graph, node, resolved):
 	print node, ": ", graph[node]
 	tup = tuple((precursor, node) for precursor in graph[node])
 	resolved.append(node)
-	# print "tup->list ", node, list(tup)
 	if len(list(tup)) > 0:
 		print list(tup)
 	for precursor in graph[node]:
@@ -215,13 +232,14 @@ if __name__ == "__main__":
 		print "   "
 		print "Rendering precursor graph"
 		print "nodes: ", nodes
+		# print "node_tuples: ", node_tuples(nodes)
 		edges = []
 		for node in nodes:
 			precursor_edges(dep_dict, node, edges)
 		print "edges: ", edges
 
 		add_edges(
-			add_nodes(digraph(), resolved),
+			add_nodes(digraph(), node_tuples(nodes)),
 			edges
 		).render("output/img/%s-precursors" % sc.id)
 		print "image: output/img/%s-precursors.%s" % (sc.id, vizformat)
