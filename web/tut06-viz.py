@@ -66,14 +66,14 @@ class StringGenerator(object):
           </head>
       <body>
         <h3>({sc_id}) {sc_title}</h3>
-        <pre>{sc_desc}</pre>
+        <p style="width:800;">{sc_desc}</p>
         <!--p>/output/img/AU-5-precursors.svg</p-->
         <!--p>path: {path}, sc_id: {sc_id}</p-->
         <p>key: <span style="color: blue">organization</span> <span style="color: red">information system</span></p>
         
         <img src="/output/img/{sc_id}-precursors.svg" height="300">
       </body>
-    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = sc.description, path=os.path.abspath(os.getcwd()) )
+    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = "<br />".join(sc.description.split("\n")), path=os.path.abspath(os.getcwd()) )
 
 if __name__ == '__main__':
     conf = {
