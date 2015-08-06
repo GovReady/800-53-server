@@ -17,9 +17,9 @@ class StringGenerator(object):
             <link href="/static/css/style.css" rel="stylesheet">
           </head>
       <body>
-        <form method="get" action="generate">
-          <input type="text" value="8" name="length" />
-              <button type="submit">Give it now!</button>
+        <form method="get" action="control">
+          800-53 control id: <input type="text" value="AU-3" name="id" />
+              <button type="submit">illucitato!</button>
         </form>
       </body>
     </html>"""
@@ -62,9 +62,14 @@ class StringGenerator(object):
         # render html page
         return """<html>
           <head>
-            
+            <title>800-53 Control {sc_id}</title>
           </head>
       <body>
+        <form method="get" action="control">
+          800-53 control id: <input type="text" value="" name="id" />
+              <button type="submit">illucitato!</button>
+        </form>
+
         <h3>({sc_id}) {sc_title}</h3>
         <p style="width:800;">{sc_desc}</p>
         <!--p>/output/img/AU-5-precursors.svg</p-->
