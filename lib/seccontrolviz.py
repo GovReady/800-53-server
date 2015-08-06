@@ -49,6 +49,7 @@ class SecControlViz(object):
 		# load other 
 		self.resolved = []
 		self.nodes = []
+		self.edges = []
 
 	def _load_graph_from_dependency_files(self):
 		"load graph from reading dependency files"

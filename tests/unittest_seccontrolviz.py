@@ -3,6 +3,7 @@ import sys
 import os
 import json
 
+
 sys.path.append(os.path.join('lib'))
 sys.path.append(os.path.join('data'))
 from seccontrol import SecControl
@@ -62,11 +63,57 @@ class SecControlVizTest(unittest.TestCase):
 		# print cv.node_options_tuples(cv.nodes)
 		self.assertTrue(cv.node_options_tuples(cv.nodes) == [('AU-3', {'fontname': 'arial', 'color': 'red', 'label': u'AU-3\nCONTENT OF AUDIT RECORDS', 'shape': 'box3d', 'fontsize': '12', 'fontcolor': 'red'}), ('AU-2', {'fontname': 'arial', 'color': 'blue', 'label': u'AU-2\nAUDIT EVENTS', 'shape': 'box3d', 'fontsize': '12', 'fontcolor': 'blue'}), ('RA-3', {'fontname': 'arial', 'color': 'blue', 'label': u'RA-3\nRISK ASSESSMENT', 'shape': 'box3d', 'fontsize': '12', 'fontcolor': 'blue'}), ('PM-9', {'fontname': 'arial', 'color': 'blue', 'label': u'PM-9\nRISK MANAGEMENT STRATEGY', 'shape': 'box3d', 'fontsize': '12', 'fontcolor': 'blue'})])
 
+	def test_edges(self):
+		id = "AU-3"
+		cv = SecControlViz(id)
+		cv.precursor_list(cv.dep_dict, id, cv.nodes)
+		for node in cv.nodes:
+			cv.precursor_edges(cv.dep_dict, node, cv.edges)
+		# print "edges: ", cv.edges
+		self.assertTrue(cv.edges == [('AU-2', 'AU-3'), ('RA-3', 'AU-2'), ('PM-9', 'RA-3')])
+
 	def test_add_nodes(self):
-		pass
+		id = "AU-3"
+		cv = SecControlViz(id)
+		cv.precursor_list(cv.dep_dict, id, cv.nodes)
+		digraph = cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes))
+		# print "<%s>" % digraph
+		# print cv.nodes
+		self.assertTrue("%s" % digraph == """digraph {
+	"AU-3" [label="AU-3
+CONTENT OF AUDIT RECORDS" color=red fontcolor=red fontname=arial fontsize=12 shape=box3d]
+	"AU-2" [label="AU-2
+AUDIT EVENTS" color=blue fontcolor=blue fontname=arial fontsize=12 shape=box3d]
+	"RA-3" [label="RA-3
+RISK ASSESSMENT" color=blue fontcolor=blue fontname=arial fontsize=12 shape=box3d]
+	"PM-9" [label="PM-9
+RISK MANAGEMENT STRATEGY" color=blue fontcolor=blue fontname=arial fontsize=12 shape=box3d]
+}"""
+)
 
 	def test_add_edges(self):
-		pass
+		id = "AU-3"
+		cv = SecControlViz(id)
+		cv.precursor_list(cv.dep_dict, id, cv.nodes)
+		# create edges
+		for node in cv.nodes:
+			cv.precursor_edges(cv.dep_dict, node, cv.edges)
+		digraph = cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes))
+		# print "<%s>" % digraph
 
+		# weak test, first delete file if exists
+		try:
+		    os.remove("output/img/%s-precursors" % id)
+		    os.remove("output/img/%s-precursors.%s" % (id, cv.vizformat))
+		except OSError:
+		    pass
+		# generate graphviz file
+		cv.add_edges(cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes)),
+			cv.edges
+		).render("output/img/%s-precursors" % id)
+		print "image: output/img/%s-precursors.%s" % (id, cv.vizformat)
+		# now see if image file created?
+		self.assertTrue(os.path.exists("output/img/%s-precursors.%s" % (id, cv.vizformat)))
+		
 if __name__ == "__main__":
 	unittest.main()
