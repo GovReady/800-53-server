@@ -36,6 +36,7 @@ class StringGenerator(object):
 
     @cherrypy.expose
     def control(self, id="AU-5"):
+        id = id.upper()
         sc = SecControl(id)
         cv = SecControlViz(id)
 
