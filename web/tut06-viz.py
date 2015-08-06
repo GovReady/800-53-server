@@ -37,6 +37,28 @@ class StringGenerator(object):
     @cherrypy.expose
     def control(self, id="AU-5"):
         sc = SecControl(id)
+        cv = SecControlViz(id)
+
+        # create graphviz file
+        cv.precursor_list(cv.dep_dict, id, cv.nodes)
+        # create edges
+        for node in cv.nodes:
+            cv.precursor_edges(cv.dep_dict, node, cv.edges)
+        digraph = cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes))
+        # print "<%s>" % digraph
+
+        # weak test, first delete file if exists
+        try:
+            os.remove("output/img/%s-precursors" % id)
+            os.remove("output/img/%s-precursors.%s" % (id, cv.vizformat))
+        except OSError:
+            pass
+        # generate graphviz file
+        cv.add_edges(cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes)),
+            cv.edges
+        ).render("output/img/%s-precursors" % id)
+        
+        # render html page
         return """<html>
           <head>
             
