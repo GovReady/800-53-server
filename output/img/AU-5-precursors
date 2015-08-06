@@ -1,18 +1,18 @@
 digraph {
-	"AU-5" [label="(AU-5)
-RESPONSE TO AUDIT PROCESSING FAILURES" color=red fontcolor=red fontname=arial fontsize=12 shape=egg]
-	"AU-2" [label="(AU-2)
-AUDIT EVENTS" color=blue fontcolor=blue fontname=arial fontsize=12 shape=egg]
-	"RA-3" [label="(RA-3)
-RISK ASSESSMENT" color=blue fontcolor=blue fontname=arial fontsize=12 shape=egg]
-	"PM-9" [label="(PM-9)
-RISK MANAGEMENT STRATEGY" color=blue fontcolor=blue fontname=arial fontsize=12 shape=egg]
-	"AU-3" [label="(AU-3)
-CONTENT OF AUDIT RECORDS" color=red fontcolor=red fontname=arial fontsize=12 shape=egg]
-	"AU-8" [label="(AU-8)
-TIME STAMPS" color=red fontcolor=red fontname=arial fontsize=12 shape=egg]
-	"AU-14" [label="(AU-14)
-SESSION AUDIT" color=red fontcolor=red fontname=arial fontsize=12 shape=egg]
+	"AU-5" [label="AU-5
+RESPONSE TO AUDIT PROCESSING FAILURES" color=red fontcolor=red fontname=arial fontsize=12 shape=box3d]
+	"AU-2" [label="AU-2
+AUDIT EVENTS" color=blue fontcolor=blue fontname=arial fontsize=12 shape=box3d]
+	"RA-3" [label="RA-3
+RISK ASSESSMENT" color=blue fontcolor=blue fontname=arial fontsize=12 shape=box3d]
+	"PM-9" [label="PM-9
+RISK MANAGEMENT STRATEGY" color=blue fontcolor=blue fontname=arial fontsize=12 shape=box3d]
+	"AU-3" [label="AU-3
+CONTENT OF AUDIT RECORDS" color=red fontcolor=red fontname=arial fontsize=12 shape=box3d]
+	"AU-8" [label="AU-8
+TIME STAMPS" color=red fontcolor=red fontname=arial fontsize=12 shape=box3d]
+	"AU-14" [label="AU-14
+SESSION AUDIT" color=red fontcolor=red fontname=arial fontsize=12 shape=box3d]
 		"AU-2" -> "AU-5"
 		"AU-3" -> "AU-5"
 		"AU-8" -> "AU-5"
