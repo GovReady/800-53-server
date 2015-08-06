@@ -160,9 +160,9 @@ class SecControlViz(object):
 		options['color'] = {'organization': 'blue', 'information system': 'red', 'withdrawn': 'gray'}[sc.responsible]
 		return options
 
-	def node_tuples(self, nodes):
+	def node_options_tuples(self, nodes):
 		""" convert simple array of nodes to node tuples having options """
-		tup = tuple((node, node_options(node)) for node in nodes)
+		tup = tuple((node, self.node_options_by_id(node)) for node in nodes)
 		return list(tup)
 
 	def showEdges(self, graph, node):

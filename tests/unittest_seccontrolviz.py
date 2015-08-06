@@ -53,7 +53,20 @@ class SecControlVizTest(unittest.TestCase):
 		# print "node_options: ", node_options
 		self.assertTrue(node_options == {'fontname': 'arial', 'color': 'red', 'label': u'AU-3\nCONTENT OF AUDIT RECORDS', 'shape': 'box3d', 'fontsize': '12', 'fontcolor': 'red'})
 
+	def test_create_node_options_tuples(self):
+		id = "AU-3"
+		cv = SecControlViz(id)
+		# Find precursor nodes
+		cv.precursor_list(cv.dep_dict, id, cv.nodes)
+		# print "cv.nodes: ", cv.nodes
+		# print cv.node_options_tuples(cv.nodes)
+		self.assertTrue(cv.node_options_tuples(cv.nodes) == [('AU-3', {'fontname': 'arial', 'color': 'red', 'label': u'AU-3\nCONTENT OF AUDIT RECORDS', 'shape': 'box3d', 'fontsize': '12', 'fontcolor': 'red'}), ('AU-2', {'fontname': 'arial', 'color': 'blue', 'label': u'AU-2\nAUDIT EVENTS', 'shape': 'box3d', 'fontsize': '12', 'fontcolor': 'blue'}), ('RA-3', {'fontname': 'arial', 'color': 'blue', 'label': u'RA-3\nRISK ASSESSMENT', 'shape': 'box3d', 'fontsize': '12', 'fontcolor': 'blue'}), ('PM-9', {'fontname': 'arial', 'color': 'blue', 'label': u'PM-9\nRISK MANAGEMENT STRATEGY', 'shape': 'box3d', 'fontsize': '12', 'fontcolor': 'blue'})])
 
+	def test_add_nodes(self):
+		pass
+
+	def test_add_edges(self):
+		pass
 
 if __name__ == "__main__":
 	unittest.main()
