@@ -63,7 +63,7 @@ class StringGenerator(object):
         # render json
         if format == "json":
             cherrypy.response.headers['Content-Type'] = 'application/json'
-            return sc.get_control_json()
+            return json.dumps(sc.get_control_json())
 
         
         # render html page
