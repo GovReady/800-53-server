@@ -2,6 +2,7 @@ import os, os.path
 import sys
 import random
 import string
+import json
 import cherrypy
 
 sys.path.append(os.path.join('lib'))
@@ -35,7 +36,7 @@ class StringGenerator(object):
         return cherrypy.session['mystring']
 
     @cherrypy.expose
-    def control(self, id="AU-5"):
+    def control(self, id="AU-5", format="html"):
         id = id.upper()
         sc = SecControl(id)
         cv = SecControlViz(id)
@@ -58,6 +59,12 @@ class StringGenerator(object):
         cv.add_edges(cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes)),
             cv.edges
         ).render("output/img/%s-precursors" % id)
+
+        # render json
+        if format == "json":
+            cherrypy.response.headers['Content-Type'] = 'application/json'
+            return sc.get_control_json()
+
         
         # render html page
         return """<html>

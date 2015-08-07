@@ -47,6 +47,18 @@ class SecControlTest(unittest.TestCase):
 		c = SecControl("SA-7")
 		self.assertTrue(c.responsible == "withdrawn")
 
+	def test_generate_json(self):
+		# To do - this test does not work
+		id = "AT-3"
+		c = SecControl(id)
+		c_json = c.get_control_json()
+		# print c_json
+		self.assertTrue(c_json["id"] == c.id)
+		self.assertTrue(c_json["title"] == c.title)
+		self.assertTrue(c_json["description"] == c.description)
+		self.assertTrue(c_json["responsible"] == c.responsible)
+		self.assertTrue(c_json["supplemental_guidance"] == c.supplemental_guidance)
+
 		# test for other (not organization, information system, or [Withdrawn)
 
 if __name__ == "__main__":

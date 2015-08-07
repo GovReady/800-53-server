@@ -21,6 +21,7 @@ __license__ = "GPL 3.0"
 import os
 import sys
 import json
+import pprint
 import commands
 import re
 
@@ -57,5 +58,13 @@ class SecControl(object):
 
     def get_control_json(self):
         "produce json version of control detail"
-        print json.dumps(self.details)
+        self.json = {}
+        self.json['id'] = self.id
+        self.json['title'] = self.title
+        self.json['description'] = self.description
+        self.json['responsible'] = self.responsible
+        self.json['supplemental_guidance'] = self.supplemental_guidance
+        return self.json
         # To Do: needs test
+
+
