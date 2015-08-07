@@ -32,6 +32,31 @@ namespace notes:
 <xsl:strip-space elements="*"/>
 <xsl:output method="text" encoding="utf-8" />
 
+<xsl:variable name="new-line" select="'&#10;'" />
+<!--xsl:variable name="new-line" select="'&#A;'" /-->
+<xsl:variable name="new-line-fix" select="'\n'" />
+
+<xsl:template name="replace-string">
+    <xsl:param name="text"/>
+    <xsl:param name="replace"/>
+    <xsl:param name="with"/>
+    <xsl:choose>
+      <xsl:when test="contains($text,$replace)">
+        <xsl:value-of select="substring-before($text,$replace)"/>
+        <xsl:value-of select="$with"/>
+        <xsl:call-template name="replace-string">
+          <xsl:with-param name="text"
+select="substring-after($text,$replace)"/>
+          <xsl:with-param name="replace" select="$replace"/>
+          <xsl:with-param name="with" select="$with"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$text"/>
+      </xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
 <xsl:template match="/">
     <xsl:apply-templates/>
 </xsl:template>
@@ -41,7 +66,12 @@ namespace notes:
     <xsl:variable name="filename" select="concat( c:number, '.md' )"/>{ "id": "<xsl:value-of select='c:number'/>",
   "title": "<xsl:value-of select='c:title'/>",
   "family": "<xsl:value-of select='c:family'/>",
-  "description": "<xsl:value-of select='c:statement/c:description'/><xsl:for-each select='c:statement/c:statement'>\n <xsl:value-of select="translate(c:number,$controlnumber,'')"/><xsl:text> </xsl:text><xsl:value-of select='c:description'/><xsl:text></xsl:text></xsl:for-each>"
+  "description": "<xsl:value-of select='c:statement/c:description'/><xsl:for-each select='c:statement/c:statement'>\n <xsl:value-of select="translate(c:number,$controlnumber,'')"/><xsl:text> </xsl:text><xsl:value-of select='c:description'/><xsl:text></xsl:text></xsl:for-each>",
+  "supplemental_guidance": "<xsl:call-template name="replace-string">
+  <xsl:with-param name="text" select='c:supplemental-guidance/c:description'/>
+  <xsl:with-param name="replace" select="$new-line" />
+  <xsl:with-param name="with" select="$new-line-fix"/>
+</xsl:call-template>"
 }
 <xsl:text>
 </xsl:text>

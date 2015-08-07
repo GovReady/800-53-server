@@ -37,6 +37,7 @@ class SecControl(object):
             self.details = json.loads(results[1])
             self.title = self.details["title"]
             self.description = self.details["description"]
+            self.supplemental_guidance = self.details['supplemental_guidance']
             self.responsible = self._get_responsible()
         else:
             self.details = json.loads('{"id": null, "error": "Failed to get security control information from 800-53 xml"}')
