@@ -75,25 +75,30 @@ class StringGenerator(object):
             <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
           </head>
       <body>
-        <form method="get" action="control">
-          800-53 control id: <input type="text" value="" name="id" />
-              <button type="submit">illucitato!</button>
-        </form>
 
-        <h3>({sc_id}) {sc_title}</h3>
+        <form method="get" action="control" style="margin-top:10px; padding:8px 0px 8px 8px; background-color:#efefef;">
+          800-53 control id: <input type="text" value="" name="id" />
+              <button type="submit">Show me!</button>
+        </form>
         
-        <h4>Control Description</h4>
+
+        <h2>({sc_id}) {sc_title}</h2>
+        
+        <h3>Control Description</h3>
         <p style="width:800;">{sc_desc}</p>
-        <!--p>/output/img/AU-5-precursors.svg</p-->
-        <!--p>path: {path}, sc_id: {sc_id}</p-->
         
-        <p>key: <span style="color: blue">organization</span> <span style="color: red">information system</span></p>
         <!-- add in svg block into html page -->
         <h4>Control Dependency Chain</h4>
         <div id="graph">
             {sc_svg}
         </div>
-        <h4>Supplemental Guidance</h4>
+        <div id="graphkey">
+            key: 
+            <div style="color: cornflowerblue">blue is organization responsibility</div>
+            <div style="color: palevioletred">light red is information system responsibility</div>
+        </div>
+
+        <h3>Supplemental Guidance</h3>
         <p>{sc_suppl}</p>
  
       </body>

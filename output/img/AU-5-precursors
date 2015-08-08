@@ -1,18 +1,18 @@
 digraph {
 	"AU-5" [label="AU-5
-RESPONSE TO AUDIT PROCESSING FAILURES" URL="/control?id=AU-5" color=red fontcolor=red fontname=arial fontsize=12 shape=box3d tooltip="(AU-5) RESPONSE TO AUDIT PROCESSING FAILURES"]
+Response To Audit Processing Failures" URL="/control?id=AU-5" color=palevioletred fontcolor=palevioletred fontname=arial fontsize=12 shape=egg tooltip="(AU-5) Response To Audit Processing Failures"]
 	"AU-2" [label="AU-2
-AUDIT EVENTS" URL="/control?id=AU-2" color=blue fontcolor=blue fontname=arial fontsize=12 shape=box3d tooltip="(AU-2) AUDIT EVENTS"]
+Audit Events" URL="/control?id=AU-2" color=cornflowerblue fontcolor=cornflowerblue fontname=arial fontsize=12 shape=egg tooltip="(AU-2) Audit Events"]
 	"RA-3" [label="RA-3
-RISK ASSESSMENT" URL="/control?id=RA-3" color=blue fontcolor=blue fontname=arial fontsize=12 shape=box3d tooltip="(RA-3) RISK ASSESSMENT"]
+Risk Assessment" URL="/control?id=RA-3" color=cornflowerblue fontcolor=cornflowerblue fontname=arial fontsize=12 shape=egg tooltip="(RA-3) Risk Assessment"]
 	"PM-9" [label="PM-9
-RISK MANAGEMENT STRATEGY" URL="/control?id=PM-9" color=blue fontcolor=blue fontname=arial fontsize=12 shape=box3d tooltip="(PM-9) RISK MANAGEMENT STRATEGY"]
+Risk Management Strategy" URL="/control?id=PM-9" color=cornflowerblue fontcolor=cornflowerblue fontname=arial fontsize=12 shape=egg tooltip="(PM-9) Risk Management Strategy"]
 	"AU-3" [label="AU-3
-CONTENT OF AUDIT RECORDS" URL="/control?id=AU-3" color=red fontcolor=red fontname=arial fontsize=12 shape=box3d tooltip="(AU-3) CONTENT OF AUDIT RECORDS"]
+Content Of Audit Records" URL="/control?id=AU-3" color=palevioletred fontcolor=palevioletred fontname=arial fontsize=12 shape=egg tooltip="(AU-3) Content Of Audit Records"]
 	"AU-8" [label="AU-8
-TIME STAMPS" URL="/control?id=AU-8" color=red fontcolor=red fontname=arial fontsize=12 shape=box3d tooltip="(AU-8) TIME STAMPS"]
+Time Stamps" URL="/control?id=AU-8" color=palevioletred fontcolor=palevioletred fontname=arial fontsize=12 shape=egg tooltip="(AU-8) Time Stamps"]
 	"AU-14" [label="AU-14
-SESSION AUDIT" URL="/control?id=AU-14" color=red fontcolor=red fontname=arial fontsize=12 shape=box3d tooltip="(AU-14) SESSION AUDIT"]
+Session Audit" URL="/control?id=AU-14" color=palevioletred fontcolor=palevioletred fontname=arial fontsize=12 shape=egg tooltip="(AU-14) Session Audit"]
 		"AU-2" -> "AU-5"
 		"AU-3" -> "AU-5"
 		"AU-8" -> "AU-5"

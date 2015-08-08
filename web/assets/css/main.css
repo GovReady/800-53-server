@@ -1,11 +1,36 @@
+body{
+	width: 950px;
+	margin: auto;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 11pt;
+}
 
 #graph {
-	border: 1px solid #333;
-	height: 600px;
-	width: 1250px;
+	border: 1px solid #bbb;
+	height: 400px;
+	width: 900px;
+
+	border-radius: 15px;
+	padding:4px;
+
+	overflow-x: scroll;
+	overflow-y: scroll;
+	position: relative;
+
+}
+
+#graphkey {
+	font-size: 0.7em;
 }
 
 svg {
-  height: 600px;
-  width: 1250px;
+	height: 400px;
+	width: 1800px;
+
+	position: absolute;
+	top: -9999px;
+	bottom: -9999px;
+	left: -9999px;
+	right: -9999px;
+	margin: auto;
 }

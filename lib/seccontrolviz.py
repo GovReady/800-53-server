@@ -151,17 +151,18 @@ class SecControlViz(object):
 		# Pass in options to method
 		options = {}
 		sc = SecControl(node)
-		options['label'] = "%s\n%s" % (node, sc.title)
-		options['shape'] = "box3d"
+		sc_title = sc.title
+		options['label'] = "%s\n%s" % (node, sc_title.title())
+		options['shape'] = "egg"
 		options['fontname'] = "arial"
 		options['fontsize'] = "12"
 		# options['fontcolor'] = "blue"
 		# tooltip and clickable URL links (svg)
-		options['tooltip'] = "(%s) %s" % (node, sc.title)
+		options['tooltip'] = "(%s) %s" % (node, sc.title.title())
 		options['URL'] = "/control?id=%s" % sc.id
 		# color code by responsibility
-		options['fontcolor'] = {'organization': 'blue', 'information system': 'red', 'withdrawn': 'gray'}[sc.responsible]
-		options['color'] = {'organization': 'blue', 'information system': 'red', 'withdrawn': 'gray'}[sc.responsible]
+		options['fontcolor'] = {'organization': 'cornflowerblue', 'information system': 'palevioletred', 'withdrawn': 'gray'}[sc.responsible]
+		options['color'] = {'organization': 'cornflowerblue', 'information system': 'palevioletred', 'withdrawn': 'gray'}[sc.responsible]
 		return options
 
 	def node_options_tuples(self, nodes):
