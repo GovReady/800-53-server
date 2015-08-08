@@ -1,0 +1,11 @@
+
+#graph {
+	border: 1px solid #333;
+	height: 600px;
+	width: 1250px;
+}
+
+svg {
+  height: 600px;
+  width: 1250px;
+}

@@ -156,6 +156,9 @@ class SecControlViz(object):
 		options['fontname'] = "arial"
 		options['fontsize'] = "12"
 		# options['fontcolor'] = "blue"
+		# tooltip and clickable URL links (svg)
+		options['tooltip'] = "(%s) %s" % (node, sc.title)
+		options['URL'] = "/control?id=%s" % sc.id
 		# color code by responsibility
 		options['fontcolor'] = {'organization': 'blue', 'information system': 'red', 'withdrawn': 'gray'}[sc.responsible]
 		options['color'] = {'organization': 'blue', 'information system': 'red', 'withdrawn': 'gray'}[sc.responsible]

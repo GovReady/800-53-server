@@ -59,17 +59,20 @@ class StringGenerator(object):
         cv.add_edges(cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes)),
             cv.edges
         ).render("output/img/%s-precursors" % id)
+        # read contents of svg file into variable
+        with open("output/img/%s-precursors.svg" % id, "r") as svg_file:
+            svg_content = svg_file.read()
 
         # render json
         if format == "json":
             cherrypy.response.headers['Content-Type'] = 'application/json'
             return json.dumps(sc.get_control_json())
-
         
         # render html page
         return """<html>
           <head>
             <title>800-53 Control {sc_id}</title>
+            <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
           </head>
       <body>
         <form method="get" action="control">
@@ -85,13 +88,16 @@ class StringGenerator(object):
         <!--p>path: {path}, sc_id: {sc_id}</p-->
         
         <p>key: <span style="color: blue">organization</span> <span style="color: red">information system</span></p>
-        <img src="/output/img/{sc_id}-precursors.svg" height="300">
-
+        <!-- add in svg block into html page -->
+        <h4>Control Dependency Chain</h4>
+        <div id="graph">
+            {sc_svg}
+        </div>
         <h4>Supplemental Guidance</h4>
         <p>{sc_suppl}</p>
  
       </body>
-    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = "<br />".join(sc.description.split("\n")), sc_suppl = "<br />".join(sc.supplemental_guidance.split("\n")), path=os.path.abspath(os.getcwd()) )
+    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = "<br />".join(sc.description.split("\n")), sc_svg = svg_content, sc_suppl = "<br />".join(sc.supplemental_guidance.split("\n")), path=os.path.abspath(os.getcwd()) )
 
 if __name__ == '__main__':
     conf = {
@@ -106,6 +112,10 @@ if __name__ == '__main__':
         '/output': {
             'tools.staticdir.on': True,
             'tools.staticdir.dir': 'output'
+        },
+        '/assets': {
+            'tools.staticdir.on': True,
+            'tools.staticdir.dir': 'web/assets'
         }
     }
     cherrypy.quickstart(StringGenerator(), '/', conf)
