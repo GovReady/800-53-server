@@ -5,6 +5,13 @@ body{
 	font-size: 11pt;
 }
 
+#form_lookup {
+	margin-top:10px;
+	padding:8px 0px 8px 8px;
+	background-color:#efefef;
+	border-radius: 8px;
+}
+
 #graph {
 	border: 1px solid #bbb;
 	height: 400px;

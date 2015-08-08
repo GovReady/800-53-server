@@ -78,7 +78,7 @@ class StringGenerator(object):
           </head>
       <body>
 
-        <form method="get" action="control" style="margin-top:10px; padding:8px 0px 8px 8px; background-color:#efefef;">
+        <form id="form_lookup" method="get" action="control">
           800-53 control id: <input type="text" value="" name="id" />
               <button type="submit">Show me!</button>
         </form>
