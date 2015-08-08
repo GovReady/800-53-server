@@ -15,12 +15,14 @@ class StringGenerator(object):
     def index(self):
         return """<html>
           <head>
-            <link href="/static/css/style.css" rel="stylesheet">
+            <title>800-53 Control</title>
+            <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
           </head>
       <body>
-        <form method="get" action="control">
-          800-53 control id: <input type="text" value="AU-3" name="id" />
-              <button type="submit">illucitato!</button>
+
+        <form id="form_lookup" method="get" action="control">
+          800-53 control id: <input type="text" value="AU-4" name="id" />
+              <button type="submit">Show me!</button>
         </form>
       </body>
     </html>"""
@@ -36,7 +38,7 @@ class StringGenerator(object):
         return cherrypy.session['mystring']
 
     @cherrypy.expose
-    def control(self, id="AU-5", format="html"):
+    def control(self, id="AU-4", format="html"):
         id = id.upper()
         sc = SecControl(id)
         cv = SecControlViz(id)
