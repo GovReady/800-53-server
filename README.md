@@ -61,6 +61,7 @@ image: output/img/AU-7-precursors.png
 # Testing
 ```
 python tests/unittest_seccontrol.py 
+python tests/unittest_seccontrolviz.py 
 ```
 
 # Files
