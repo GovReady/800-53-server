@@ -59,6 +59,7 @@ class StringGenerator(object):
         cv.add_edges(cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes)),
             cv.edges
         ).render("output/img/%s-precursors" % id)
+
         # read contents of svg file into variable
         with open("output/img/%s-precursors.svg" % id, "r") as svg_file:
             svg_content = svg_file.read()

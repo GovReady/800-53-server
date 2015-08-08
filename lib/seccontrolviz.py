@@ -210,7 +210,7 @@ class SecControlViz(object):
 
 	def precursor_edges(self, graph, node, edges):
 		if node in graph:
-			tup = tuple((precursor, node) for precursor in graph[node])
+			tup = tuple(((precursor, node), {'color': 'darkkhaki', 'arrowhead': 'open'}) for precursor in graph[node])
 			for edge in list(tup):
 				edges.append(edge)
 
