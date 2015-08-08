@@ -56,7 +56,8 @@ class StringGenerator(object):
         except OSError:
             pass
         # generate graphviz file
-        cv.add_edges(cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes)),
+        graph_label = "%s Control Chain" % (id)
+        cv.add_edges(cv.add_nodes(cv.digraph(engine='dot', graph_attr={'label': graph_label, 'labelloc': 'bottom', 'labeljust': 'center', 'fontcolor':'slategray', 'fontname':'Arial', 'fontsize': '14', 'K': '4.6'}), cv.node_options_tuples(cv.nodes)),
             cv.edges
         ).render("output/img/%s-precursors" % id)
 
