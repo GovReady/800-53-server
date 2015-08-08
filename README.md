@@ -68,11 +68,14 @@ python tests/unittest_seccontrolviz.py
 
 Files                     | Description
 --------------------------|---------------------------------------------
+web/800-53-server.py      | Launches Cherrypy-based web server providing 800-53 control info
 lib/viz_control_precursor.py | Generates precursor list and graphviz of precursors for security control
 lib/control2json.xsl      | XSL transformation that creates json version of control from 800-53.xml
 lib/seccontrol.py         | Security Control class, provides information about a security control
+lib/seccontrolviz.py      | Security Control Graph+Viz class, provides information about a security control dependencies
 lib/parsedependencies.py  | (study) Produces dependencies of precursor security controls based on 800-53A Assessment docs
 lib/vizgraph.py           | (study) Generates graphviz dot file and graphic from within python
+tests/*                   | unit tests files
 
 
 # Useful Links
