@@ -16,7 +16,22 @@ This is early code. The graph methods *may* have errors.
 - xsltproc
 - Graphviz
 
-# Visualize dependencies of a 800-53 security control
+# 800-53 security control web server
+Run `800-53-server.py` from root of repo on local machine
+
+```
+python web/800-53-server.py
+```
+
+Open browser and visit either below URL:
+- http://127.0.0.1:8080/control
+- http://127.0.0.1:8080/control?id=SA-4
+
+### Want JSON?
+
+http://127.0.0.1:8080/control?id=SA-4&format=json
+
+# 800-53 security control from command line
 Run `viz_control_precursor.py` from root of repo.
 
 ```

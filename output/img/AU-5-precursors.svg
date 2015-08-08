@@ -11,21 +11,27 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-328 457.591,-328 457.591,4 -4,4"/>
 <!-- AU&#45;5 -->
 <g id="node1" class="node"><title>AU&#45;5</title>
+<g id="a_node1"><a xlink:href="/control?id=AU-5" xlink:title="(AU&#45;5) RESPONSE TO AUDIT PROCESSING FAILURES">
 <polygon fill="none" stroke="red" points="340.147,-36 59.0351,-36 55.0351,-32 55.0351,-0 336.147,-0 340.147,-4 340.147,-36"/>
 <polyline fill="none" stroke="red" points="336.147,-32 55.0351,-32 "/>
 <polyline fill="none" stroke="red" points="336.147,-32 336.147,-0 "/>
 <polyline fill="none" stroke="red" points="336.147,-32 340.147,-36 "/>
 <text text-anchor="middle" x="197.591" y="-22.1988" font-family="arial" font-size="12.00" fill="red">AU&#45;5</text>
 <text text-anchor="middle" x="197.591" y="-8.4" font-family="arial" font-size="12.00" fill="red">RESPONSE TO AUDIT PROCESSING FAILURES</text>
+</a>
+</g>
 </g>
 <!-- AU&#45;2 -->
 <g id="node2" class="node"><title>AU&#45;2</title>
+<g id="a_node2"><a xlink:href="/control?id=AU-2" xlink:title="(AU&#45;2) AUDIT EVENTS">
 <polygon fill="none" stroke="blue" points="248.937,-180 150.245,-180 146.245,-176 146.245,-144 244.937,-144 248.937,-148 248.937,-180"/>
 <polyline fill="none" stroke="blue" points="244.937,-176 146.245,-176 "/>
 <polyline fill="none" stroke="blue" points="244.937,-176 244.937,-144 "/>
 <polyline fill="none" stroke="blue" points="244.937,-176 248.937,-180 "/>
 <text text-anchor="middle" x="197.591" y="-166.199" font-family="arial" font-size="12.00" fill="blue">AU&#45;2</text>
 <text text-anchor="middle" x="197.591" y="-152.4" font-family="arial" font-size="12.00" fill="blue">AUDIT EVENTS</text>
+</a>
+</g>
 </g>
 <!-- AU&#45;2&#45;&gt;AU&#45;5 -->
 <g id="edge1" class="edge"><title>AU&#45;2&#45;&gt;AU&#45;5</title>
@@ -34,12 +40,15 @@
 </g>
 <!-- AU&#45;3 -->
 <g id="node5" class="node"><title>AU&#45;3</title>
+<g id="a_node5"><a xlink:href="/control?id=AU-3" xlink:title="(AU&#45;3) CONTENT OF AUDIT RECORDS">
 <polygon fill="none" stroke="red" points="212.772,-108 22.4105,-108 18.4105,-104 18.4105,-72 208.772,-72 212.772,-76 212.772,-108"/>
 <polyline fill="none" stroke="red" points="208.772,-104 18.4105,-104 "/>
 <polyline fill="none" stroke="red" points="208.772,-104 208.772,-72 "/>
 <polyline fill="none" stroke="red" points="208.772,-104 212.772,-108 "/>
 <text text-anchor="middle" x="115.591" y="-94.1988" font-family="arial" font-size="12.00" fill="red">AU&#45;3</text>
 <text text-anchor="middle" x="115.591" y="-80.4" font-family="arial" font-size="12.00" fill="red">CONTENT OF AUDIT RECORDS</text>
+</a>
+</g>
 </g>
 <!-- AU&#45;2&#45;&gt;AU&#45;3 -->
 <g id="edge7" class="edge"><title>AU&#45;2&#45;&gt;AU&#45;3</title>
@@ -48,12 +57,15 @@
 </g>
 <!-- AU&#45;8 -->
 <g id="node6" class="node"><title>AU&#45;8</title>
+<g id="a_node6"><a xlink:href="/control?id=AU-8" xlink:title="(AU&#45;8) TIME STAMPS">
 <polygon fill="none" stroke="red" points="327.928,-108 235.254,-108 231.254,-104 231.254,-72 323.928,-72 327.928,-76 327.928,-108"/>
 <polyline fill="none" stroke="red" points="323.928,-104 231.254,-104 "/>
 <polyline fill="none" stroke="red" points="323.928,-104 323.928,-72 "/>
 <polyline fill="none" stroke="red" points="323.928,-104 327.928,-108 "/>
 <text text-anchor="middle" x="279.591" y="-94.1988" font-family="arial" font-size="12.00" fill="red">AU&#45;8</text>
 <text text-anchor="middle" x="279.591" y="-80.4" font-family="arial" font-size="12.00" fill="red">TIME STAMPS</text>
+</a>
+</g>
 </g>
 <!-- AU&#45;2&#45;&gt;AU&#45;8 -->
 <g id="edge8" class="edge"><title>AU&#45;2&#45;&gt;AU&#45;8</title>
@@ -62,12 +74,15 @@
 </g>
 <!-- AU&#45;14 -->
 <g id="node7" class="node"><title>AU&#45;14</title>
+<g id="a_node7"><a xlink:href="/control?id=AU-14" xlink:title="(AU&#45;14) SESSION AUDIT">
 <polygon fill="none" stroke="red" points="453.607,-108 349.575,-108 345.575,-104 345.575,-72 449.607,-72 453.607,-76 453.607,-108"/>
 <polyline fill="none" stroke="red" points="449.607,-104 345.575,-104 "/>
 <polyline fill="none" stroke="red" points="449.607,-104 449.607,-72 "/>
 <polyline fill="none" stroke="red" points="449.607,-104 453.607,-108 "/>
 <text text-anchor="middle" x="399.591" y="-94.1988" font-family="arial" font-size="12.00" fill="red">AU&#45;14</text>
 <text text-anchor="middle" x="399.591" y="-80.4" font-family="arial" font-size="12.00" fill="red">SESSION AUDIT</text>
+</a>
+</g>
 </g>
 <!-- AU&#45;2&#45;&gt;AU&#45;14 -->
 <g id="edge9" class="edge"><title>AU&#45;2&#45;&gt;AU&#45;14</title>
@@ -76,12 +91,15 @@
 </g>
 <!-- RA&#45;3 -->
 <g id="node3" class="node"><title>RA&#45;3</title>
+<g id="a_node3"><a xlink:href="/control?id=RA-3" xlink:title="(RA&#45;3) RISK ASSESSMENT">
 <polygon fill="none" stroke="blue" points="261.616,-252 137.566,-252 133.566,-248 133.566,-216 257.616,-216 261.616,-220 261.616,-252"/>
 <polyline fill="none" stroke="blue" points="257.616,-248 133.566,-248 "/>
 <polyline fill="none" stroke="blue" points="257.616,-248 257.616,-216 "/>
 <polyline fill="none" stroke="blue" points="257.616,-248 261.616,-252 "/>
 <text text-anchor="middle" x="197.591" y="-238.199" font-family="arial" font-size="12.00" fill="blue">RA&#45;3</text>
 <text text-anchor="middle" x="197.591" y="-224.4" font-family="arial" font-size="12.00" fill="blue">RISK ASSESSMENT</text>
+</a>
+</g>
 </g>
 <!-- RA&#45;3&#45;&gt;AU&#45;2 -->
 <g id="edge5" class="edge"><title>RA&#45;3&#45;&gt;AU&#45;2</title>
@@ -90,12 +108,15 @@
 </g>
 <!-- PM&#45;9 -->
 <g id="node4" class="node"><title>PM&#45;9</title>
+<g id="a_node4"><a xlink:href="/control?id=PM-9" xlink:title="(PM&#45;9) RISK MANAGEMENT STRATEGY">
 <polygon fill="none" stroke="blue" points="297.777,-324 101.405,-324 97.4049,-320 97.4049,-288 293.777,-288 297.777,-292 297.777,-324"/>
 <polyline fill="none" stroke="blue" points="293.777,-320 97.4049,-320 "/>
 <polyline fill="none" stroke="blue" points="293.777,-320 293.777,-288 "/>
 <polyline fill="none" stroke="blue" points="293.777,-320 297.777,-324 "/>
 <text text-anchor="middle" x="197.591" y="-310.199" font-family="arial" font-size="12.00" fill="blue">PM&#45;9</text>
 <text text-anchor="middle" x="197.591" y="-296.4" font-family="arial" font-size="12.00" fill="blue">RISK MANAGEMENT STRATEGY</text>
+</a>
+</g>
 </g>
 <!-- PM&#45;9&#45;&gt;RA&#45;3 -->
 <g id="edge6" class="edge"><title>PM&#45;9&#45;&gt;RA&#45;3</title>
