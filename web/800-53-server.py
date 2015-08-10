@@ -88,7 +88,7 @@ class StringGenerator(object):
 
         <h2>({sc_id}) {sc_title}</h2>
         
-        <h3>Control Description</h3>
+        <!--h3>Control Description</h3-->
         <p style="width:800;">{sc_desc}</p>
         
         <!-- add in svg block into html page -->
