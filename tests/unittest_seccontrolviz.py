@@ -113,9 +113,16 @@ Risk Management Strategy" URL="/control?id=PM-9" color=cornflowerblue fontcolor=
 		cv.add_edges(cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes)),
 			cv.edges
 		).render("output/img/%s-precursors" % id)
-		print "image: output/img/%s-precursors.%s" % (id, cv.vizformat)
+		# print "image: output/img/%s-precursors.%s" % (id, cv.vizformat)
 		# now see if image file created?
 		self.assertTrue(os.path.exists("output/img/%s-precursors.%s" % (id, cv.vizformat)))
+
+	def test_node_count_in_dependency_graph(self):
+		id = "AU-3"
+		cv = SecControlViz(id)
+		pl = cv.precursor_list(cv.dep_dict, id, cv.nodes)
+		# print "precursor list: ", len(cv.nodes)
+		self.assertTrue(len(cv.nodes) == 4)
 		
 if __name__ == "__main__":
 	unittest.main()

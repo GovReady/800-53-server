@@ -180,7 +180,7 @@ class SecControlViz(object):
 		if node in graph:
 			# print node 
 			sc = SecControl(node)
-			print "%s - %s (%s)" % (node, sc.title, sc.responsible)
+			# print "%s - %s (%s)" % (node, sc.title, sc.responsible)
 			# print "      edgees: %s" % (graph[node])
 			for edge in graph[node]:
 				if edge not in resolved:
@@ -192,7 +192,7 @@ class SecControlViz(object):
 	def precursor_graph(self, graph, node, resolved):
 		# print node
 		# print "precursors: ", graph[node]
-		print node, ": ", graph[node]
+		# print node, ": ", graph[node]
 		tup = tuple((precursor, node) for precursor in graph[node])
 		resolved.append(node)
 		if len(list(tup)) > 0:
@@ -202,6 +202,7 @@ class SecControlViz(object):
 				precursor_graph(graph, precursor, resolved)
 
 	def precursor_list(self, graph, node, resolved):
+		""" recursive function to sets self.nodes to have list of precursor nodes (e.g, dependencies) """
 		if node in graph:
 			if node not in resolved:
 				resolved.append(node)
