@@ -22,6 +22,15 @@ class SecControlTest(unittest.TestCase):
 		c = SecControl(id)
 		self.assertTrue(c.title == "ROLE-BASED SECURITY TRAINING")
 
+	def test_no_existing_control(self):
+		id = "XY-3000"
+		c = SecControl(id)
+		self.assertTrue(c.title == None)
+		self.assertTrue(c.description == None)
+		self.assertTrue(c.supplemental_guidance == None)
+		self.assertTrue(c.responsible == None)
+		self.assertTrue(c.details == {})
+
 	def test_details_nonexistent_control(self):
 		id = "AX-3"
 		c = SecControl(id)
