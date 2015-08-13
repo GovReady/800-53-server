@@ -9,6 +9,8 @@ sys.path.append(os.path.join('lib'))
 sys.path.append(os.path.join('data'))
 from seccontrol import SecControl
 from seccontrolviz import SecControlViz
+from utilities import *
+
 
 class StringGenerator(object):
     @cherrypy.expose
@@ -106,7 +108,8 @@ class StringGenerator(object):
         <p>{sc_suppl}</p>
  
       </body>
-    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = "<br />".join(sc.description.split("\n")), sc_svg = svg_content, sc_suppl = "<br />".join(sc.supplemental_guidance.split("\n")), path=os.path.abspath(os.getcwd()) )
+    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = replace_line_breaks(sc.description, "\n", "<br />"),
+                sc_svg = svg_content, sc_suppl = replace_line_breaks(sc.supplemental_guidance), path=os.path.abspath(os.getcwd()) )
 
 if __name__ == '__main__':
     conf = {
