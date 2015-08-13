@@ -40,9 +40,33 @@ class StringGenerator(object):
         return cherrypy.session['mystring']
 
     @cherrypy.expose
+    def error404(self):
+        return """<html>
+          <head>
+            <title>800-53 Control Error 404</title>
+            <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+          </head>
+      <body>
+
+        <form id="form_lookup" method="get" action="control">
+          800-53 control id: <input type="text" value="" name="id" />
+              <button type="submit">Show me!</button>
+        </form>
+        
+
+        <h2>Error - 404</h2>
+        These are not the controls you are looking for...
+        """
+
+
+    @cherrypy.expose
     def control(self, id="AU-4", format="html"):
         id = id.upper()
         sc = SecControl(id)
+        if sc.title is None and sc.description is None and format == "html":
+            # control does not exist, return 404
+            print "\n*** control does not exist"
+            raise cherrypy.HTTPRedirect("/error404")
         cv = SecControlViz(id)
 
         # create graphviz file
@@ -72,6 +96,8 @@ class StringGenerator(object):
         # render json
         if format == "json":
             cherrypy.response.headers['Content-Type'] = 'application/json'
+            if sc.title is None and sc.description is None:
+                raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
             return json.dumps(sc.get_control_json())
         
         # render html page
