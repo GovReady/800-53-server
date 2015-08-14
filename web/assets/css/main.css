@@ -12,6 +12,15 @@ body{
 	border-radius: 8px;
 }
 
+#container-families {
+	margin: auto;
+	width: 650px;
+}
+
+.cfh {
+	font-family: courier;
+}
+
 #graph {
 	border: 1px solid #bbb;
 	height: 400px;
