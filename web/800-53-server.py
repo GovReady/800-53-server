@@ -17,38 +17,40 @@ class StringGenerator(object):
     def index(self):
         return """<html>
           <head>
-            <title>800-53 Control</title>
+            <title>800-53 Controls</title>
             <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
           </head>
       <body>
 
         <form id="form_lookup" method="get" action="control">
-          800-53 control id: <input type="text" value="AU-4" name="id" />
+          800-53 control id: <input type="text" value="" name="id" />
               <button type="submit">Show me!</button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="/">families</a>
 
         </form>
 
-        <div class="container-families">
-            <div class="cfh"><a href="/family?id=AC">AC</a> - Access Control</div>
-            <div class="cfh"><a href="/family?id=AU">AU</a> - Audit and Accountability</div>
-            <div class="cfh"><a href="/family?id=AT">AT</a> - Awareness and Training</div>
-            <div class="cfh"><a href="/family?id=CM">CM</a> - Configuration Management</div>
-            <div class="cfh"><a href="/family?id=CP">CP</a> - Contingency Planning</div>
-            <div class="cfh"><a href="/family?id=IA">IA</a> - Identification and Authentication</div>
-            <div class="cfh"><a href="/family?id=IR">IR</a> - Incident Response</div>
-            <div class="cfh"><a href="/family?id=MA">MA</a> - Maintenance</div>
-            <div class="cfh"><a href="/family?id=MP">MP</a> - Media Protection</div>
-            <div class="cfh"><a href="/family?id=PS">PS</a> - Personnel Security</div>
-            <div class="cfh"><a href="/family?id=PE">PE</a> - Physical and Environmental Protection</div>
-            <div class="cfh"><a href="/family?id=PL">PL</a> - Planning</div>
-            <div class="cfh"><a href="/family?id=PM">PM</a> - Program Management</div>
-            <div class="cfh"><a href="/family?id=RA">RA</a> - Risk Assessment</div>
-            <div class="cfh"><a href="/family?id=CA">CA</a> - Security Assessment and Authorization</div>
-            <div class="cfh"><a href="/family?id=SC">SC</a> - System and Communications Protection</div>
-            <div class="cfh"><a href="/family?id=SI">SI</a> - System and Information Integrity</div>
-            <div class="cfh"><a href="/family?id=SA">SA</a> - System and Services Acquisition</div>
+        <div id="container_index">
+            <h2>NIST SP 800-53 Control Families</h2>
+
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=AC">AC</a></div> - Access Control</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=AU">AU</a></div> - Audit and Accountability</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=AT">AT</a></div> - Awareness and Training</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=CM">CM</a></div> - Configuration Management</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=CP">CP</a></div> - Contingency Planning</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=IA">IA</a></div> - Identification and Authentication</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=IR">IR</a></div> - Incident Response</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=MA">MA</a></div> - Maintenance</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=MP">MP</a></div> - Media Protection</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=PS">PS</a></div> - Personnel Security</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=PE">PE</a></div> - Physical and Environmental Protection</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=PL">PL</a></div> - Planning</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=PM">PM</a></div> - Program Management</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=RA">RA</a></div> - Risk Assessment</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=CA">CA</a></div> - Security Assessment and Authorization</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=SC">SC</a></div> - System and Communications Protection</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=SI">SI</a></div> - System and Information Integrity</div>
+            <div class="cfh"><div class="cfh_id"><a href="/family?id=SA">SA</a></div> - System and Services Acquisition</div>
         </div>
 
       </body>
@@ -57,33 +59,43 @@ class StringGenerator(object):
     @cherrypy.expose
     def family(self, id="AC", format="html"):
         id = id.upper()
-        family_control_count = {"AC": 25, "AU": 16, "AT": 5, "CM": 11, "CP": 13, "IA": 11, "IR": 10, "MA": 6, "MP": 8, 
+        family_control_count =  {"AC": 25, "AU": 16, "AT": 5, "CM": 11, "CP": 13, "IA": 11, "IR": 10, "MA": 6, "MP": 8,
             "PS": 8, "PE": 20, "PL": 9, "PM": 16, "RA": 6, "CA": 9, "SC": 44, "SI": 17, "SA": 22}
+        families = {"AC": "Access Control", "AU": "Audit and Accountability", "AT": "Awareness and Training", "CM": "Configuration Management",
+            "CP": "Contingency Planning", "IA": "Identification and Authentication", "IR": "Incident Response", "MA": "Maintenance",
+            "MP": "Media Protection", "PS": "Personnel Security", "PE": "Physical and Environmental Protection", "PL": "Planning",
+            "PM": "Program Management", "RA": "Risk Assessment", "CA": "Security Assessment and Authorization",
+            "SC": "System and Communications Protection", "SI": "System and Information Integrity", "SA": "System and Services Acquisition"}
+
         control_list = []
         for control in range(1,family_control_count[id]+1):
             sc = SecControl("%s-%d" % (id, control))
-            control_list.append('<div><a href="/control?id=%s-%d">%s-%d - %s</a></div>' % (id, control, id, control, sc.title.title()))
+            control_list.append('<div><a href="/control?id=%s-%d">%s-%d</a> - %s</div>' % (id, control, id, control, sc.title.title()))
 
         return """<html>
           <head>
-            <title>800-53 Control</title>
+            <title>800-53 Controls - {sc_id}</title>
             <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
           </head>
       <body>
 
         <form id="form_lookup" method="get" action="control">
-          800-53 control id: <input type="text" value="AU-4" name="id" />
+          800-53 control id: <input type="text" value="" name="id" />
               <button type="submit">Show me!</button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="/">families</a>
         </form>
 
-        <div class="control_list">
-            {sc_list}
+        <div id="container_index">
+            <h2>{sc_id} - {sc_family}</h2>
+
+            <div class="control_list">
+                {sc_list}
+            </div>
         </div>
 
       </body>
-    </html>""".format(sc_list = "\n".join(control_list))
+    </html>""".format(sc_id = id, sc_family = families[id], sc_list = "\n".join(control_list))
 
     @cherrypy.expose
     def generate(self, length=8):

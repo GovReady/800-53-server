@@ -12,13 +12,20 @@ body{
 	border-radius: 8px;
 }
 
-#container-families {
+#container_index {
 	margin: auto;
-	width: 650px;
+	width: 450px;
+	/*border:1px solid black;*/
 }
 
 .cfh {
-	font-family: courier;
+	/*font-family: courier;*/
+}
+
+.cfh_id {
+	width: 22px;
+	/*border:1px solid black;*/
+	display: inline-block;
 }
 
 #graph {
