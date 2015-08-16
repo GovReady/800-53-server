@@ -123,6 +123,28 @@ Risk Management Strategy" URL="/control?id=PM-9" color=cornflowerblue fontcolor=
 		pl = cv.precursor_list(cv.dep_dict, id, cv.nodes)
 		# print "precursor list: ", len(cv.nodes)
 		self.assertTrue(len(cv.nodes) == 4)
+
+	def test_set_graph_size(self):
+		id = "SA-2"
+		cv = SecControlViz(id)
+		self.assertTrue(cv.width == 2.5)
+		self.assertTrue(cv.height == 2.5)
+		pl = cv.precursor_list(cv.dep_dict, id, cv.nodes)
+		# print "precursor list: ", len(cv.nodes)
+		node_count = len(cv.nodes)
+		self.assertTrue(len(cv.nodes) == 8)
+		# print "node_count..", node_count
+		if node_count <= 5: cv.width,cv.height = 2.5,2.5
+		if node_count <= 2: cv.width,cv.height = 2.5,2.5
+		if node_count >= 6: cv.width,cv.height = 2.75,2.75
+		if node_count >= 10: cv.width,cv.height = 3,3
+		if node_count >= 20: cv.width,cv.height = 3,3
+		if node_count >= 40: cv.width,cv.height = 4,4
+		if node_count >= 100: cv.width,cv.height = 12,10
+		self.assertTrue(cv.width == 2.75)
+		self.assertTrue(cv.height == 2.75)
+		
+
 		
 if __name__ == "__main__":
 	unittest.main()

@@ -28,7 +28,7 @@ import functools
 
 class SecControlViz(object):
 	"visualize 800-53 security controls"
-	def __init__(self, id):
+	def __init__(self, id, vizformat='svg'):
 		self.id = id
 		# Config
 		self.base_path = "./"
@@ -36,9 +36,12 @@ class SecControlViz(object):
 		self.out_dir = ""
 		self.log_dir = "./"
 		# graphviz image format
-		self.vizformat = 'svg'
+		self.vizformat = vizformat
+		self.width = 2.5
+		self.height = 2.5
 		self.graph = functools.partial(gv.Graph, format=self.vizformat)
 		self.digraph = functools.partial(gv.Digraph, format=self.vizformat)
+
 		# Change these for a given run
 		self.input_path = self.base_path + self.dep_dir
 		self.output_path = self.base_path + self.out_dir
@@ -214,3 +217,10 @@ class SecControlViz(object):
 			tup = tuple(((precursor, node), {'color': 'darkkhaki', 'arrowhead': 'open'}) for precursor in graph[node])
 			for edge in list(tup):
 				edges.append(edge)
+
+
+	def set_image_size(self, width, height):
+		""" set graph size in inches """
+		self.width = width
+		self.height = height
+

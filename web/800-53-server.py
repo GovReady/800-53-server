@@ -147,6 +147,18 @@ class StringGenerator(object):
         digraph = cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes))
         # print "<%s>" % digraph
 
+        # determine graph image size
+        node_count = len(cv.nodes)
+        if node_count <= 5: cv.width,cv.height = 2.5,2.5
+        if node_count <= 2: cv.width,cv.height = 2.5,2.5
+        if node_count >= 6: cv.width,cv.height = 2.75,2.75
+        if node_count >= 10: cv.width,cv.height = 3,3
+        if node_count >= 20: cv.width,cv.height = 3,3
+        if node_count >= 40: cv.width,cv.height = 4,4
+        if node_count >= 100: cv.width,cv.height = 12,10
+        print "node_count", node_count
+        print "w, h", cv.width, cv.height
+
         # weak test, first delete file if exists
         try:
             os.remove("output/img/%s-precursors" % id)
@@ -155,7 +167,7 @@ class StringGenerator(object):
             pass
         # generate graphviz file
         graph_label = "%s Control Chain" % (id)
-        cv.add_edges(cv.add_nodes(cv.digraph(engine='dot', graph_attr={'label': graph_label, 'labelloc': 'bottom', 'labeljust': 'center', 'fontcolor':'slategray', 'fontname':'Arial', 'fontsize': '14', 'K': '4.6'}), cv.node_options_tuples(cv.nodes)),
+        cv.add_edges(cv.add_nodes(cv.digraph(engine='dot', body={'size ="%d,%d";' % (cv.width, cv.height)}, graph_attr={'label': graph_label, 'labelloc': 'bottom', 'labeljust': 'center', 'fontcolor':'slategray', 'fontname':'Arial', 'fontsize': '14', 'K': '4.6'}), cv.node_options_tuples(cv.nodes)),
             cv.edges
         ).render("output/img/%s-precursors" % id)
 
@@ -175,6 +187,12 @@ class StringGenerator(object):
           <head>
             <title>800-53 Control {sc_id}</title>
             <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+            <style>
+                svg {{
+                    height: {sc_graph_height};
+                    width: 1800px;
+                }}
+            </style>
           </head>
       <body>
 
@@ -207,7 +225,8 @@ class StringGenerator(object):
  
       </body>
     </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = replace_line_breaks(sc.description, "\n", "<br />"),
-                sc_svg = svg_content, sc_suppl = replace_line_breaks(sc.supplemental_guidance), path=os.path.abspath(os.getcwd()) )
+                sc_svg = svg_content, sc_graph_height = cv.height*96,
+                sc_suppl = replace_line_breaks(sc.supplemental_guidance), path=os.path.abspath(os.getcwd()) )
 
 if __name__ == '__main__':
     conf = {
