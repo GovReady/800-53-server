@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import os, os.path
 import sys
 import random
@@ -182,6 +185,7 @@ class StringGenerator(object):
                 raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
             return json.dumps(sc.get_control_json())
         
+        print sc.supplemental_guidance
         # render html page
         return """<html>
           <head>
@@ -224,15 +228,17 @@ class StringGenerator(object):
         <p>{sc_suppl}</p>
  
       </body>
-    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = replace_line_breaks(sc.description, "\n", "<br />"),
+    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = replace_line_breaks(sc.description.encode('utf-8'), "\n", "<br />"),
                 sc_svg = svg_content, sc_graph_height = cv.height*96,
-                sc_suppl = replace_line_breaks(sc.supplemental_guidance), path=os.path.abspath(os.getcwd()) )
+                sc_suppl = replace_line_breaks(replace_unicodes(sc.supplemental_guidance)), path=os.path.abspath(os.getcwd()) )
 
 if __name__ == '__main__':
     conf = {
         '/': {
             'tools.sessions.on': True,
-            'tools.staticdir.root': os.path.abspath(os.getcwd())
+            'tools.staticdir.root': os.path.abspath(os.getcwd()),
+            'tools.encode.on': True,
+            'tools.encode.encoding': 'utf-8'
         },
         '/static': {
             'tools.staticdir.on': True,
