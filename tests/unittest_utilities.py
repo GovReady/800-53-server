@@ -1,7 +1,11 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import unittest
 import sys
 import os
 import json
+import codecs
 
 sys.path.append(os.path.join('lib'))
 from utilities import *
@@ -37,6 +41,14 @@ class TestUtitilities(unittest.TestCase):
 		expected = ""
 		actual = replace_line_breaks(text, "\n", "<br />")
 		self.assertTrue(actual == expected)
+
+
+	def test_replace_unicodes(self):
+		""" test replacement of certain unicodes """
+		text = u"Inherent in defining an organization�s information protection needs"
+		expected = "Inherent in defining an organization's information protection needs"
+		actual = replace_unicodes(text)
+		self.assertTrue(actual ==  expected)
 
 		
 if __name__ == "__main__":
