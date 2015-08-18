@@ -66,7 +66,8 @@ select="substring-after($text,$replace)"/>
     <xsl:variable name="filename" select="concat( c:number, '.md' )"/>{ "id": "<xsl:value-of select='c:number'/>",
   "title": "<xsl:value-of select='c:title'/>",
   "family": "<xsl:value-of select='c:family'/>",
-  "description": "<xsl:value-of select='c:statement/c:description'/><xsl:for-each select='c:statement/c:statement'>\n <xsl:value-of select="translate(c:number,$controlnumber,'')"/><xsl:text> </xsl:text><xsl:value-of select='c:description'/><xsl:text></xsl:text></xsl:for-each>",
+  "description": "<xsl:value-of select='c:statement/c:description'/>
+  <xsl:for-each select='c:statement/c:statement'>\n<xsl:value-of select="c:number"/><xsl:text> </xsl:text><xsl:value-of select='c:description'/><xsl:text></xsl:text><xsl:for-each select='c:statement'>\n<xsl:text>\t</xsl:text><xsl:value-of select="c:number"/><xsl:text> </xsl:text><xsl:value-of select="c:description"/></xsl:for-each></xsl:for-each>",
   "supplemental_guidance": "<xsl:call-template name="replace-string">
   <xsl:with-param name="text" select='c:supplemental-guidance/c:description'/>
   <xsl:with-param name="replace" select="$new-line" />
