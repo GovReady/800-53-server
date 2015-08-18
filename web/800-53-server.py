@@ -228,7 +228,7 @@ class StringGenerator(object):
         <p>{sc_suppl}</p>
  
       </body>
-    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = replace_line_breaks(sc.description.encode('utf-8'), "\n", "<br />"),
+    </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = replace_line_breaks(replace_line_breaks(sc.description.encode('utf-8'), "\n", "<br /><br />"), "\t", "&nbsp;&nbsp;&nbsp;&nbsp;"),
                 sc_svg = svg_content, sc_graph_height = cv.height*96,
                 sc_suppl = replace_line_breaks(replace_unicodes(sc.supplemental_guidance)), path=os.path.abspath(os.getcwd()) )
 
