@@ -22,6 +22,12 @@ class SecControlTest(unittest.TestCase):
 		c = SecControl(id)
 		self.assertTrue(c.title == "ROLE-BASED SECURITY TRAINING")
 
+	def test_details_control_enhancement(self):
+		id = "AU-3 (1)"
+		c = SecControl(id)
+		self.assertTrue(c.title == "ADDITIONAL AUDIT INFORMATION")
+		self.assertTrue(c.description == "The information system generates audit records containing the following additional information: [Assignment: organization-defined additional, more detailed information].")
+
 	def test_no_existing_control(self):
 		id = "XY-3000"
 		c = SecControl(id)

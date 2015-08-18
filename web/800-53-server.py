@@ -184,8 +184,7 @@ class StringGenerator(object):
             if sc.title is None and sc.description is None:
                 raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
             return json.dumps(sc.get_control_json())
-        
-        print sc.supplemental_guidance
+
         # render html page
         return """<html>
           <head>

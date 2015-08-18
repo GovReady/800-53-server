@@ -1,25 +1,27 @@
 digraph {
-	"AU-5" [label="AU-5
+	graph [K=4.6 fontcolor=slategray fontname=Arial fontsize=14 label="AU-5 Control Chain" labeljust=center labelloc=bottom]
+	size ="2,2";
+		"AU-5" [label="AU-5
 Response To Audit Processing Failures" URL="/control?id=AU-5" color=palevioletred fontcolor=palevioletred fontname=arial fontsize=12 shape=egg tooltip="(AU-5) Response To Audit Processing Failures"]
-	"AU-2" [label="AU-2
+		"AU-2" [label="AU-2
 Audit Events" URL="/control?id=AU-2" color=cornflowerblue fontcolor=cornflowerblue fontname=arial fontsize=12 shape=egg tooltip="(AU-2) Audit Events"]
-	"RA-3" [label="RA-3
+		"RA-3" [label="RA-3
 Risk Assessment" URL="/control?id=RA-3" color=cornflowerblue fontcolor=cornflowerblue fontname=arial fontsize=12 shape=egg tooltip="(RA-3) Risk Assessment"]
-	"PM-9" [label="PM-9
+		"PM-9" [label="PM-9
 Risk Management Strategy" URL="/control?id=PM-9" color=cornflowerblue fontcolor=cornflowerblue fontname=arial fontsize=12 shape=egg tooltip="(PM-9) Risk Management Strategy"]
-	"AU-3" [label="AU-3
+		"AU-3" [label="AU-3
 Content Of Audit Records" URL="/control?id=AU-3" color=palevioletred fontcolor=palevioletred fontname=arial fontsize=12 shape=egg tooltip="(AU-3) Content Of Audit Records"]
-	"AU-8" [label="AU-8
+		"AU-8" [label="AU-8
 Time Stamps" URL="/control?id=AU-8" color=palevioletred fontcolor=palevioletred fontname=arial fontsize=12 shape=egg tooltip="(AU-8) Time Stamps"]
-	"AU-14" [label="AU-14
+		"AU-14" [label="AU-14
 Session Audit" URL="/control?id=AU-14" color=palevioletred fontcolor=palevioletred fontname=arial fontsize=12 shape=egg tooltip="(AU-14) Session Audit"]
-		"AU-2" -> "AU-5"
-		"AU-3" -> "AU-5"
-		"AU-8" -> "AU-5"
-		"AU-14" -> "AU-5"
-		"RA-3" -> "AU-2"
-		"PM-9" -> "RA-3"
-		"AU-2" -> "AU-3"
-		"AU-2" -> "AU-8"
-		"AU-2" -> "AU-14"
+			"AU-2" -> "AU-5" [arrowhead=open color=darkkhaki]
+			"AU-3" -> "AU-5" [arrowhead=open color=darkkhaki]
+			"AU-8" -> "AU-5" [arrowhead=open color=darkkhaki]
+			"AU-14" -> "AU-5" [arrowhead=open color=darkkhaki]
+			"RA-3" -> "AU-2" [arrowhead=open color=darkkhaki]
+			"PM-9" -> "RA-3" [arrowhead=open color=darkkhaki]
+			"AU-2" -> "AU-3" [arrowhead=open color=darkkhaki]
+			"AU-2" -> "AU-8" [arrowhead=open color=darkkhaki]
+			"AU-2" -> "AU-14" [arrowhead=open color=darkkhaki]
 }
