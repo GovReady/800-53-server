@@ -68,7 +68,7 @@ select="substring-after($text,$replace)"/>
   "family": "<xsl:value-of select='c:family'/>",
   "description": "<xsl:value-of select='c:statement/c:description'/>
   <xsl:for-each select='c:statement/c:statement'>\n<xsl:value-of select="translate(c:number,$controlnumber,'')"/><xsl:text> </xsl:text><xsl:value-of select='c:description'/><xsl:text></xsl:text><xsl:for-each select='c:statement'>\n<xsl:text>\t</xsl:text><xsl:value-of select="c:number"/><xsl:text> </xsl:text><xsl:value-of select="c:description"/></xsl:for-each></xsl:for-each>",
-    "control_enhancements": "<xsl:for-each select='c:control-enhancements/c:control-enhancement'><xsl:value-of select="c:number"/><xsl:text> </xsl:text><xsl:value-of select='c:title'/><xsl:text>: </xsl:text><xsl:for-each select='c:statement'><xsl:value-of select="c:description"/></xsl:for-each><xsl:for-each select='c:supplemental-guidance'> (Supplemental-guidance: <xsl:value-of select="c:description"/>) </xsl:for-each><xsl:text>\n\n</xsl:text></xsl:for-each>",
+    "control_enhancements": "<xsl:for-each select='c:control-enhancements/c:control-enhancement'><xsl:value-of select="c:number"/><xsl:text> </xsl:text><xsl:value-of select='c:title'/><xsl:text>:\n</xsl:text><xsl:for-each select='c:statement'><xsl:value-of select="c:description"/></xsl:for-each><xsl:for-each select='c:supplemental-guidance'> (Supplemental-guidance: <xsl:value-of select="c:description"/>) </xsl:for-each><xsl:text>\n\n</xsl:text></xsl:for-each>",
   "supplemental_guidance": "<xsl:call-template name="replace-string">
   <xsl:with-param name="text" select='c:supplemental-guidance/c:description'/>
   <xsl:with-param name="replace" select="$new-line" />
