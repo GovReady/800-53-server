@@ -208,12 +208,9 @@ class StringGenerator(object):
         
 
         <h2>({sc_id}) {sc_title}</h2>
-        
-        <!--h3>Control Description</h3-->
-        <p style="width:800;">{sc_desc}</p>
-        
-        <!-- add in svg block into html page -->
-        <h4>Control Dependency Chain</h4>
+
+        <!-- Graph image by adding svg block into html page -->
+        <!--h4>Control Dependency Chain</h4-->
         <div id="graph">
             {sc_svg}
         </div>
@@ -222,6 +219,9 @@ class StringGenerator(object):
             <div style="color: cornflowerblue">blue is organization responsibility</div>
             <div style="color: palevioletred">light red is information system responsibility</div>
         </div>
+        
+        <h3>Control Description</h3>
+        <p style="width:800;">{sc_desc}</p>
 
         <h3>Supplemental Guidance</h3>
         <p>{sc_suppl}</p>

@@ -29,9 +29,9 @@ body{
 }
 
 #graph {
-	border: 1px solid #bbb;
-	height: 400px;
-	width: 900px;
+	border: 0px solid #bbb;
+	height: 360px;
+	width: 960px;
 
 	border-radius: 15px;
 	padding:4px;
@@ -39,6 +39,7 @@ body{
 	overflow-x: scroll;
 	overflow-y: scroll;
 	position: relative;
+	text-align: left;
 
 }
 
@@ -48,7 +49,7 @@ body{
 
 svg {
 	height: 400px;
-	width: 1800px;
+	/*width: 1800px;*/
 
 	position: absolute;
 	top: -9999px;
