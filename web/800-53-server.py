@@ -235,6 +235,27 @@ class StringGenerator(object):
                 sc_enhance = replace_line_breaks(replace_unicodes(sc.control_enhancements)),
                 sc_suppl = replace_line_breaks(replace_unicodes(sc.supplemental_guidance)), path=os.path.abspath(os.getcwd()) )
 
+    @cherrypy.expose
+    def controllist(self, ids="AU-4,AU-6", format="html"):
+        cherrypy.response.headers['Content-Type'] = 'application/json'
+        controllist = []
+        # return ids.split(',')
+        for id in ids.split(','):
+            id = id.upper()
+            sc = SecControl(id)
+            if sc.title is None and sc.description is None and format == "html":
+                # control does not exist, return 404
+                print "\n*** control does not exist"
+                raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
+            controllist.append(sc.get_control_json())
+
+        # render json
+        if format == "json":
+            cherrypy.response.headers['Content-Type'] = 'application/json'
+            if sc.title is None and sc.description is None:
+                raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
+            return json.dumps(controllist)
+
 if __name__ == '__main__':
     conf = {
         '/': {
