@@ -1,0 +1,61 @@
+---
+name: AwesomeAgency.gov
+uniqueID: my-system-id
+version: 0.1.0
+phase: alpha
+information-types:
+- D26 Civilian Operations
+confidentiality: none
+integrity: low
+availability: low
+security-baseline: open data
+system-type: minor
+level-of-identity-assurance: 0
+staff:
+    authorizing-official:
+        name: Grace Jones
+        title: Agency Executive Director 
+        org: General Services Administration
+        unit: 18F
+        email: 18F@gsa.gov
+    system-owner: 
+        name: Sam Waterson
+        title: 18F Infrastructure Director
+        org: General Services Administration
+        unit: 18F
+        email: devops@gsa.gov
+    system-management:
+        name: Sam Waterson
+        title: 18F Infrastructure Director
+        org: General Services Administration
+        unit: 18F
+        email: devops@gsa.gov
+    system-security-officer:
+        name: Sam Spade
+        title: 18F Infrastructure Director
+        org: General Services Administration
+        unit: 18F
+        email: devops@gsa.gov
+    technical-lead:
+        name: Susan Sarandon
+        title: Product Lead
+        org: General Services Administration
+        unit: 18F
+        email: example@gsa.gov
+leveraged-authorizations: 
+- https://www.fedramp.gov/marketplace/compliant-systems/amazon-web-services-aws-eastwest-us-public-cloud/
+purpose: https://github.com/18F/some-repo-data
+components: https://github.com/18F/some-repo#application-architecture
+diagram: https://github.com/18F/some-repo-data#diagram
+network-architecture: https://github.com/18F/some-repo-data#diagram
+environments:
+- Cloud Foundry
+- Amazon Web Services East / West
+user-types:
+    developer:
+        functions: 
+        - deployment
+        - engineering
+controls: [url]
+assignments:
+    organization-defined-audit-record-storage-requirements: at least four times estimated peak usage

@@ -1,0 +1,38 @@
+<html>
+      <head>
+        <title>800-53 Control {{ sc_id }}</title>
+        <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+        <style>
+            svg {
+                height: {{ sc_graph_height }};
+                width: 1800px;
+            }
+        </style>
+      </head>
+  <body>
+
+    <form id="form_lookup" method="get" action="control">
+      800-53 control id: <input type="text" value="" name="id" />
+          <button type="submit">Show me!</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="/">families</a>
+    </form>
+    
+    <h2>({{ sc_id }}) {{ sc_title }}</h2>
+
+    <h3>Control Description</h3>
+    <p style="width:800;">{{ sc_desc }}</p>
+
+    <!-- Graph image by adding svg block into html page -->
+    <!--h4>Control Dependency Chain</h4-->
+    <div id="graph">
+        {{ sc_svg }}
+    </div>
+    <div id="graphkey">
+        key: 
+        <div style="color: cornflowerblue">blue is organization responsibility</div>
+        <div style="color: palevioletred">light red is information system responsibility</div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+
+  <head>
+    <title>800-53 Control {sc_id}</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    <style>
+        .even {
+        	background-color: #ddd;
+        }
+
+        .odd {
+        	background-color: #fff;
+        }
+    </style>
+  </head>
+
+<body>
+<h1>System Security Plan Info - {{ ssp.name }}</h1>
+
+
+<h2>Staff</h2>
+
+<ul>
+{% for role in ssp.staff %}
+  <li>{{ role }}: {{ ssp.staff[role].name }}, {{ ssp.staff[role].title }}</li>
+{% endfor %}
+</ul>
+name: Sam Waterson
+        title: 18F Infrastructure Director
+        org: General Services Administration
+        unit: 18F
+        email: devops@gsa.gov
+
+<table border="1">
+  <tr>
+  	<td>Role</td>
+  	<td>org</td>
+  	<td>title</td>
+  	<td>email</td>
+  	<td>unit</td>
+  	<td>name</td>
+  </tr>
+{% for row in ssp.staff %}
+  {% set rowloop = loop %}
+  <tr class="{{ loop.cycle('odd', 'even') }}">
+  	<td>{{ row }}</td>
+  {% for cell in ssp.staff[row] %}
+    <td id="cell-{{ rowloop.index }}-{{ loop.index }}" >{{ ssp.staff[row][cell] }} </td>
+  {% endfor %}
+  </tr>
+{% endfor %}
+</table>
+
+
+</body>
+
+</html>

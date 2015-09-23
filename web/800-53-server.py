@@ -6,6 +6,7 @@ import sys
 import random
 import string
 import json
+import yaml
 import cherrypy
 from jinja2 import Environment, FileSystemLoader
 env = Environment(loader=FileSystemLoader('web/templates'))
@@ -237,6 +238,72 @@ class StringGenerator(object):
                 sc_enhance = replace_line_breaks(replace_unicodes(sc.control_enhancements)),
                 sc_suppl = replace_line_breaks(replace_unicodes(sc.supplemental_guidance)), path=os.path.abspath(os.getcwd()) )
 
+    # http://localhost:8080/controlsystem?id=AU-4
+    @cherrypy.expose
+    def controlsystem(self, id="AU-4", format="html"):
+        id = id.upper()
+        sc = SecControl(id)
+        if sc.title is None and sc.description is None and format == "html":
+            # control does not exist, return 404
+            print "\n*** control does not exist"
+            raise cherrypy.HTTPRedirect("/error404")
+        cv = SecControlViz(id)
+
+        # create graphviz file
+        cv.precursor_list(cv.dep_dict, id, cv.nodes)
+        # create edges
+        for node in cv.nodes:
+            cv.precursor_edges(cv.dep_dict, node, cv.edges)
+        digraph = cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes))
+        # print "<%s>" % digraph
+
+        # determine graph image size
+        node_count = len(cv.nodes)
+        if node_count <= 5: cv.width,cv.height = 2.5,2.5
+        if node_count <= 2: cv.width,cv.height = 2.5,2.5
+        if node_count >= 6: cv.width,cv.height = 2.75,2.75
+        if node_count >= 10: cv.width,cv.height = 3,3
+        if node_count >= 20: cv.width,cv.height = 3,3
+        if node_count >= 40: cv.width,cv.height = 4,4
+        if node_count >= 100: cv.width,cv.height = 12,10
+        print "node_count", node_count
+        print "w, h", cv.width, cv.height
+
+        # weak test, first delete file if exists
+        try:
+            os.remove("output/img/%s-precursors" % id)
+            os.remove("output/img/%s-precursors.%s" % (id, cv.vizformat))
+        except OSError:
+            pass
+        # generate graphviz file
+        graph_label = "%s Control Chain" % (id)
+        cv.add_edges(cv.add_nodes(cv.digraph(engine='dot', body={'size ="%d,%d";' % (cv.width, cv.height)}, graph_attr={'label': graph_label, 'labelloc': 'bottom', 'labeljust': 'center', 'fontcolor':'slategray', 'fontname':'Arial', 'fontsize': '14', 'K': '4.6'}), cv.node_options_tuples(cv.nodes)),
+            cv.edges
+        ).render("output/img/%s-precursors" % id)
+
+        # read contents of svg file into variable
+        with open("output/img/%s-precursors.svg" % id, "r") as svg_file:
+            svg_content = svg_file.read()
+
+        # render json
+        if format == "json":
+            cherrypy.response.headers['Content-Type'] = 'application/json'
+            if sc.title is None and sc.description is None:
+                raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
+            return json.dumps(sc.get_control_json())
+
+        with open('compliance/system/fisma/system-security-plan.yml', 'r') as f:
+            ssp = yaml.load(f)
+
+        sc_desc = use_org_name(sc.description.encode('utf-8'), ssp['name'])
+        sc_desc = replace_assignments(sc_desc, ssp)
+        sc_desc = replace_line_breaks(replace_line_breaks(sc_desc, "\n", "<br /><br />"), "\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
+        # render html page
+        tmpl = env.get_template('controlsystem.html', ssp)
+        return tmpl.render( sc_id = id, sc_title = sc.title, sc_desc = sc_desc,
+            sc_svg = svg_content, sc_graph_height = cv.height*96,
+            path=os.path.abspath(os.getcwd()) )
+
     # http://localhost:8080/controllist/?ids=AU-4,AU-6
     # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=html
     # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=json
@@ -265,6 +332,23 @@ class StringGenerator(object):
             cherrypy.response.headers['Content-Type'] = 'text/html'
             tmpl = env.get_template('controllist.html')
             return tmpl.render(controllist=controllist)
+
+    # http://localhost:8080/sspinfo
+    @cherrypy.expose
+    def sspinfo(self, format="html"):
+        print "executing sspinfo"
+        with open('compliance/system/fisma/system-security-plan.yml', 'r') as f:
+            ssp = yaml.load(f)
+
+        # render html
+        if format == "html":
+            cherrypy.response.headers['Content-Type'] = 'text/html'
+            # override env
+            env = Environment(loader=FileSystemLoader('compliance/system/fisma/templates'))
+            tmpl = env.get_template('ssp.html')
+            return tmpl.render(ssp=ssp)
+
+
 
 if __name__ == '__main__':
     conf = {
