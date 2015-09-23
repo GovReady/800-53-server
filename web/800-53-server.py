@@ -348,8 +348,6 @@ class StringGenerator(object):
             tmpl = env.get_template('ssp.html')
             return tmpl.render(ssp=ssp)
 
-
-
 if __name__ == '__main__':
     conf = {
         '/': {

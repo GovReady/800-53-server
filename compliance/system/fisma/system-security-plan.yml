@@ -58,4 +58,4 @@ user-types:
         - engineering
 controls: [url]
 assignments:
-    organization-defined-audit-record-storage-requirements: at least four times estimated peak usage
+    organization-defined-audit-record-storage-requirements: GSA Audit policy of at least four times estimated peak usage
