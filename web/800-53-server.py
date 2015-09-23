@@ -7,6 +7,8 @@ import random
 import string
 import json
 import cherrypy
+from jinja2 import Environment, FileSystemLoader
+env = Environment(loader=FileSystemLoader('web/templates'))
 
 sys.path.append(os.path.join('lib'))
 sys.path.append(os.path.join('data'))
@@ -235,6 +237,9 @@ class StringGenerator(object):
                 sc_enhance = replace_line_breaks(replace_unicodes(sc.control_enhancements)),
                 sc_suppl = replace_line_breaks(replace_unicodes(sc.supplemental_guidance)), path=os.path.abspath(os.getcwd()) )
 
+    # http://localhost:8080/controllist/?ids=AU-4,AU-6
+    # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=html
+    # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=json
     @cherrypy.expose
     def controllist(self, ids="AU-4,AU-6", format="html"):
         cherrypy.response.headers['Content-Type'] = 'application/json'
@@ -255,6 +260,11 @@ class StringGenerator(object):
             if sc.title is None and sc.description is None:
                 raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
             return json.dumps(controllist)
+        else:
+            # render html
+            cherrypy.response.headers['Content-Type'] = 'text/html'
+            tmpl = env.get_template('controllist.html')
+            return tmpl.render(controllist=controllist)
 
 if __name__ == '__main__':
     conf = {
