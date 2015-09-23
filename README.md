@@ -17,6 +17,7 @@ This is early code. The graph methods *may* have errors.
 - Graphviz (http://www.graphviz.org)
 - Python Libraries
    - graphviz https://pypi.python.org/pypi/graphviz
+   - jinja2 https://pypi.python.org/pypi/Jinja2
 
 # 800-53 security control web server
 Run `800-53-server.py` from root of repo on local machine
