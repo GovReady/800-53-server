@@ -21,6 +21,7 @@ __license__ = "GPL 3.0"
 import os
 import sys
 import json
+import yaml
 import pprint
 import commands
 import re
@@ -29,6 +30,8 @@ class SecControl(object):
     "represent 800-53 security controls"
     def __init__(self, id):
         self.id = id
+        self.id2 = "other"
+        print "initializing"
         if "(" in self.id:
             self._load_control_enhancement_from_xml()
         else:
@@ -90,4 +93,18 @@ class SecControl(object):
         return self.json
         # To Do: needs test
 
-
+    def get_control_yaml(self):
+        "produce yaml version of control detail"
+        self.yaml = dict(
+            id = self.id,
+            title = self.title,
+            description = self.description,
+            responsible = self.responsible,
+            supplemental_guidance = self.supplemental_guidance
+            )
+        print "---"
+        print yaml.safe_dump(self.yaml, default_flow_style=False)
+        return self.yaml
+        print "---"
+        yaml_str = yaml.safe_dump(self.yaml, default_flow_style=False)
+        # To Do: needs test

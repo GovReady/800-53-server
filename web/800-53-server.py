@@ -307,6 +307,7 @@ class StringGenerator(object):
     # http://localhost:8080/controllist/?ids=AU-4,AU-6
     # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=html
     # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=json
+    # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=yaml
     @cherrypy.expose
     def controllist(self, ids="AU-4,AU-6", format="html"):
         cherrypy.response.headers['Content-Type'] = 'application/json'
@@ -320,6 +321,15 @@ class StringGenerator(object):
                 print "\n*** control does not exist"
                 raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
             controllist.append(sc.get_control_json())
+
+        # render yaml
+        if format == "yaml":
+            if sc.title is None and sc.description is None:
+                raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
+            # return yaml.dump(controllist, default_flow_style=True)
+            cherrypy.response.headers['Content-Type'] = 'text/html'
+            tmpl = env.get_template('controllistyaml.html')
+            return tmpl.render(controllist=controllist)
 
         # render json
         if format == "json":
