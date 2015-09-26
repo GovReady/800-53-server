@@ -1,5 +1,5 @@
 ---
-name: AwesomeAgency.gov
+name: Federal Agency
 uniqueID: my-system-id
 version: 0.1.0
 phase: alpha
@@ -16,32 +16,32 @@ staff:
         name: Grace Jones
         title: Agency Executive Director 
         org: General Services Administration
-        unit: 18F
-        email: 18F@gsa.gov
+        unit: OrgUnit
+        email: orgunit@federalagency.gov
     system-owner: 
         name: Sam Waterson
-        title: 18F Infrastructure Director
+        title: OrgUnit Infrastructure Director
         org: General Services Administration
-        unit: 18F
-        email: devops@gsa.gov
+        unit: OrgUnit
+        email: devops@federalagency.gov
     system-management:
         name: Sam Waterson
-        title: 18F Infrastructure Director
+        title: OrgUnit Infrastructure Director
         org: General Services Administration
-        unit: 18F
-        email: devops@gsa.gov
+        unit: OrgUnit
+        email: devops@federalagency.gov
     system-security-officer:
         name: Sam Spade
-        title: 18F Infrastructure Director
+        title: OrgUnit Infrastructure Director
         org: General Services Administration
-        unit: 18F
-        email: devops@gsa.gov
+        unit: OrgUnit
+        email: devops@federalagency.gov
     technical-lead:
         name: Susan Sarandon
         title: Product Lead
         org: General Services Administration
-        unit: 18F
-        email: example@gsa.gov
+        unit: OrgUnit
+        email: example@federalagency.gov
 leveraged-authorizations: 
 - https://www.fedramp.gov/marketplace/compliant-systems/amazon-web-services-aws-eastwest-us-public-cloud/
 purpose: https://github.com/18F/some-repo-data

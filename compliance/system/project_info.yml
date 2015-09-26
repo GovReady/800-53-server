@@ -1,0 +1,123 @@
+organization:
+  name: General Federal Agency
+  street_address: XXXX G St, NW
+  room: XXXX infil
+  city: Washington
+  state: DC
+  zip: 204XX
+project:
+  name: Awesome IT System
+  abbreviation: AITS
+  date: 2015-07-07
+  executive_summary: This document details the System Security Plan (SSP) for the Awesome IT System (AITS) security controls. This System Security Plan was written in accordance with National Institute of Standards and Technology (NIST) Special Publication (SP) 800-18, Revision 1, Guide for Developing Security Plans for Information Technology Systems.  Completion of this SSP, which describes how U.S. federal information will be safeguarded, is a requirement of the Office of Management and Budget (OMB) Circular A-130, Management of Federal Information Resources, Appendix III, Security of Federal Automated Information Resources, and Public Law 100-235, the Computer Security Act of 1987.
+  owner: Bureau X | GFA
+  assurance_level: Not Applicable
+  operational_status: Under Development
+  operational_type: Application
+  security_categorization: Low
+  security_categorization_chart:
+    low: x
+    moderate: ''
+    high: ''
+  sensitivity_categorization:
+    development:
+      confidentiality: Low
+      integrity: Low
+      availability: Low
+    lifecyle:
+      confidentiality: Low
+      integrity: Low
+      availability: Low
+    system_maintenance:
+      confidentiality: Low
+      integrity: Low
+      availability: Low
+    infrastructure_maintenance:
+      confidentiality: Low
+      integrity: Low
+      availability: Low
+  security_impact_level:
+    confidentiality: low
+    integrity: Low
+    availability: low
+  e_authentication:
+    require_internet_yes: ''
+    require_internet_no: no
+    browser_transmitted_yes: ''
+    browser_transmitted_no: no
+    user_internet_connection_yes: ''
+    user_internet_connection_no: no
+  system_status:
+    operational: ''
+    under_development: 'x'
+    modification: 'x'
+    other:
+      status: ''
+      explain: ''
+  system_type:
+    saas: ''
+    paas: x
+    iaas: ''
+    other:
+      choice: ''
+      explain: ''
+owner:
+  name: Sam Waterson
+  title: Delivery Architect
+  organization: Bureau X | GFA
+  address: XXXX G St, NW
+  phone: 202-XXX-XXXX
+  email: devops@gfa.gov
+authorizing_official:
+  name: John Snow
+  title: Authorizing Offical
+  organization: Bureau X | GFA
+  address: XXXX G St, NW
+  city: Washington
+  state: DC
+  zip: 204XX
+  phone: ''
+  email: john.snow@gfa.gov
+additional_contacts:
+  - type: Information System Technical Point of Contact
+    name: Sam Waterson
+    title: Delivery Architect
+    organization: Bureau X | GFA
+    address: XXXX G St, NW
+    city: Washington
+    state: DC
+    zip: 204XX
+    phone: 202-XXX-XXXX
+    email: devops@gfa.gov
+isso_officer_contacts:
+  - name: Tyrion Lanaster
+    title: Information System Security Officer
+    organization: General Services Administration
+    address: XXXX G St, NW
+    city: Washington
+    state: DC
+    zip: 204XX
+    phone: 202-XXX-XXXX
+    email: tyrion.lanaster@gfa.gov
+  - name: Cersei Lanaster
+    title: Information System Security Officer
+    organization: General Services Administration
+    address: XXXX G St, NW
+    city: Washington
+    state: DC
+    zip: 204XX
+    phone: 202-XXX-XXXX
+    email: cersei.lanaster@gfa.gov
+leveraged_authorizations:
+  - information_system_name: AWS FedRamp Agency ATO
+    issuer: HHS
+    service_provider: Amazon
+    date_granted: 2013-05-13
+general_system_description:
+system_environment:
+system_interconnections:
+applicable_laws_and_regulations:
+applicable_standards_and_guidance:
+assignments:
+    organization-defined-audit-record-storage-requirements: GSA Audit policy of at least four times estimated peak usage
+

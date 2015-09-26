@@ -1,7 +1,7 @@
 <html>
 
   <head>
-    <title>800-53 Control {sc_id}</title>
+    <title>{{ project.project.name }}</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
     <style>
         .even {
@@ -15,14 +15,14 @@
   </head>
 
 <body>
-<h1>System Security Plan Info - {{ ssp.name }}</h1>
+<h1>System Security Plan Info - {{ project.project.name }}</h1>
 
 
 <h2>Staff</h2>
 
 <ul>
-{% for role in ssp.staff %}
-  <li>{{ role }}: {{ ssp.staff[role].name }}, {{ ssp.staff[role].title }}</li>
+{% for role in project.staff %}
+  <li>{{ role }}: {{ project.staff[role].name }}, {{ project.staff[role].title }}</li>
 {% endfor %}
 </ul>
 name: Sam Waterson
@@ -40,12 +40,12 @@ name: Sam Waterson
   	<td>unit</td>
   	<td>name</td>
   </tr>
-{% for row in ssp.staff %}
+{% for row in project.staff %}
   {% set rowloop = loop %}
   <tr class="{{ loop.cycle('odd', 'even') }}">
   	<td>{{ row }}</td>
-  {% for cell in ssp.staff[row] %}
-    <td id="cell-{{ rowloop.index }}-{{ loop.index }}" >{{ ssp.staff[row][cell] }} </td>
+  {% for cell in project.staff[row] %}
+    <td id="cell-{{ rowloop.index }}-{{ loop.index }}" >{{ project.staff[row][cell] }} </td>
   {% endfor %}
   </tr>
 {% endfor %}
