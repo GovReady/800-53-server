@@ -134,110 +134,6 @@ class StringGenerator(object):
         These are not the controls you are looking for...
         """
 
-
-    # @cherrypy.expose
-    # def controlold(self, id="AU-4", format="html"):
-    #     id = id.upper()
-    #     sc = SecControl(id)
-    #     if sc.title is None and sc.description is None and format == "html":
-    #         # control does not exist, return 404
-    #         print "\n*** control does not exist"
-    #         raise cherrypy.HTTPRedirect("/error404")
-    #     cv = SecControlViz(id)
-
-    #     # create graphviz file
-    #     cv.precursor_list(cv.dep_dict, id, cv.nodes)
-    #     # create edges
-    #     for node in cv.nodes:
-    #         cv.precursor_edges(cv.dep_dict, node, cv.edges)
-    #     digraph = cv.add_nodes(cv.digraph(), cv.node_options_tuples(cv.nodes))
-    #     # print "<%s>" % digraph
-
-    #     # determine graph image size
-    #     node_count = len(cv.nodes)
-    #     if node_count <= 5: cv.width,cv.height = 2.5,2.5
-    #     if node_count <= 2: cv.width,cv.height = 2.5,2.5
-    #     if node_count >= 6: cv.width,cv.height = 2.75,2.75
-    #     if node_count >= 10: cv.width,cv.height = 3,3
-    #     if node_count >= 20: cv.width,cv.height = 3,3
-    #     if node_count >= 40: cv.width,cv.height = 4,4
-    #     if node_count >= 100: cv.width,cv.height = 12,10
-    #     print "node_count", node_count
-    #     print "w, h", cv.width, cv.height
-
-    #     # weak test, first delete file if exists
-    #     try:
-    #         os.remove("output/img/%s-precursors" % id)
-    #         os.remove("output/img/%s-precursors.%s" % (id, cv.vizformat))
-    #     except OSError:
-    #         pass
-    #     # generate graphviz file
-    #     graph_label = "%s Control Chain" % (id)
-    #     cv.add_edges(cv.add_nodes(cv.digraph(engine='dot', body={'size ="%d,%d";' % (cv.width, cv.height)}, graph_attr={'label': graph_label, 'labelloc': 'bottom', 'labeljust': 'center', 'fontcolor':'slategray', 'fontname':'Arial', 'fontsize': '14', 'K': '4.6'}), cv.node_options_tuples(cv.nodes)),
-    #         cv.edges
-    #     ).render("output/img/%s-precursors" % id)
-
-    #     # read contents of svg file into variable
-    #     with open("output/img/%s-precursors.svg" % id, "r") as svg_file:
-    #         svg_content = svg_file.read()
-
-    #     # render json
-    #     if format == "json":
-    #         cherrypy.response.headers['Content-Type'] = 'application/json'
-    #         if sc.title is None and sc.description is None:
-    #             raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
-    #         return json.dumps(sc.get_control_json())
-
-    #     # render html page
-    #     return """<html>
-    #       <head>
-    #         <title>800-53 Control {sc_id}</title>
-    #         <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
-    #         <style>
-    #             svg {{
-    #                 height: {sc_graph_height};
-    #                 width: 1800px;
-    #             }}
-    #         </style>
-    #       </head>
-    #   <body>
-
-    #     <form id="form_lookup" method="get" action="control">
-    #       800-53 control id: <input type="text" value="" name="id" />
-    #           <button type="submit">Show me!</button>
-    #           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    #           <a href="/">families</a>
-    #     </form>
-        
-
-    #     <h2>({sc_id}) {sc_title}</h2>
-
-    #     <!-- Graph image by adding svg block into html page -->
-    #     <!--h4>Control Dependency Chain</h4-->
-    #     <div id="graph">
-    #         {sc_svg}
-    #     </div>
-    #     <div id="graphkey">
-    #         key: 
-    #         <div style="color: cornflowerblue">blue is organization responsibility</div>
-    #         <div style="color: palevioletred">light red is information system responsibility</div>
-    #     </div>
-        
-    #     <h3>Control Description</h3>
-    #     <p style="width:800;">{sc_desc}</p>
-
-    #     <h3>Supplemental Guidance</h3>
-    #     <p>{sc_suppl}</p>
-
-    #     <h3>Control Enhancements</h3>
-    #     <p>{sc_enhance}</p>
- 
-    #   </body>
-    # </html>""".format( sc_id = id, sc_title = sc.title, sc_desc = replace_line_breaks(replace_line_breaks(sc.description.encode('utf-8'), "\n", "<br /><br />"), "\t", "&nbsp;&nbsp;&nbsp;&nbsp;"),
-    #             sc_svg = svg_content, sc_graph_height = cv.height*96,
-    #             sc_enhance = replace_line_breaks(replace_unicodes(sc.control_enhancements)),
-    #             sc_suppl = replace_line_breaks(replace_unicodes(sc.supplemental_guidance)), path=os.path.abspath(os.getcwd()) )
-
     # http://localhost:8080/control?id=AU-4
     @cherrypy.expose
     def control(self, id="AU-4", format="html"):
@@ -312,6 +208,8 @@ class StringGenerator(object):
     def controllist(self, ids="AU-4,AU-6", format="html"):
         cherrypy.response.headers['Content-Type'] = 'application/json'
         controllist = []
+        j = dict()
+        y = dict()
         # return ids.split(',')
         for id in ids.split(','):
             id = id.upper()
@@ -321,15 +219,17 @@ class StringGenerator(object):
                 print "\n*** control does not exist"
                 raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
             controllist.append(sc.get_control_json())
+            j[id] = sc.get_control_json()
+            y[id] = sc.get_control_yaml()
 
         # render yaml
         if format == "yaml":
             if sc.title is None and sc.description is None:
                 raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
             # return yaml.dump(controllist, default_flow_style=True)
-            cherrypy.response.headers['Content-Type'] = 'text/html'
-            tmpl = env.get_template('controllistyaml.html')
-            return tmpl.render(controllist=controllist)
+            cherrypy.response.headers['Content-Type'] = 'text/yaml'
+            # return sc.get_control_yaml()
+            return yaml.safe_dump(y, default_flow_style=False)
 
         # render json
         if format == "json":
