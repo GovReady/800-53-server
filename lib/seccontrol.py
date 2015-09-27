@@ -30,12 +30,12 @@ class SecControl(object):
     "represent 800-53 security controls"
     def __init__(self, id):
         self.id = id
-        self.id2 = "other"
-        print "initializing"
         if "(" in self.id:
             self._load_control_enhancement_from_xml()
         else:
             self._load_control_from_xml()
+        # split description
+        self.set_description_sections()
         
     def _load_control_from_xml(self):
         "load control detail from 800-53 xml"
@@ -69,7 +69,6 @@ class SecControl(object):
             self.title = self.description = self.supplemental_guidance = self.control_enhancements = self.responsible = None
             self.details = {}
 
-
     def _get_responsible(self):
         "determine responsibility"
         m = re.match(r'The organization|The information system|\[Withdrawn', self.description)
@@ -88,6 +87,8 @@ class SecControl(object):
         self.json['id'] = self.id
         self.json['title'] = self.title
         self.json['description'] = self.description
+        self.json['description_intro'] = self.description_intro
+        self.json['description_sections'] = self.description_sections
         self.json['responsible'] = self.responsible
         self.json['supplemental_guidance'] = self.supplemental_guidance
         return self.json
@@ -99,12 +100,27 @@ class SecControl(object):
             id = self.id,
             title = self.title,
             description = self.description,
+            description_intro = self.description_intro,
+            description_sections = self.description_sections,
             responsible = self.responsible,
             supplemental_guidance = self.supplemental_guidance
         )
         return yaml.safe_dump(sc_yaml, default_flow_style=False)
 
     # utility functions
+    def set_description_sections(self):
+        """ splits a control description by lettered sub-sections """
+        if self.description is None:
+            self.description_intro = self.description_sections = None
+            return True
+        # temporarily merge sub-sectionsof sub-sections into sub-section, e.g., '\n\tAC-2h.1.'
+        tmp_description = re.sub(r"\n\t[A-Z][A-Z]-[0-9]+[a-z]\.([0-9]+)\.", r" (\1)", self.description)
+        # split subsections
+        sections = re.compile("\n").split(tmp_description)
+        self.description_intro = sections.pop(0)
+        self.description_sections = sections
+        return True
+
     def replace_line_breaks(self, text, break_src="\n", break_trg="<br />"):
         """ replace one type of line break with another in text block """
         if text is None:

@@ -204,6 +204,7 @@ class StringGenerator(object):
     # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=html
     # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=json
     # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=yaml
+    # http://localhost:8080/controllist/?ids=AU-4,AU-6&format=control-masonry
     @cherrypy.expose
     def controllist(self, ids="AU-4,AU-6", format="html"):
         cherrypy.response.headers['Content-Type'] = 'application/json'
@@ -226,10 +227,14 @@ class StringGenerator(object):
         if format == "yaml":
             if sc.title is None and sc.description is None:
                 raise cherrypy.HTTPError("404 Not Found", "The requested resource does not exist")
-            # return yaml.dump(controllist, default_flow_style=True)
             cherrypy.response.headers['Content-Type'] = 'text/yaml'
-            # return sc.get_control_yaml()
             return yaml.safe_dump(y, default_flow_style=False)
+
+        #  render for 18F's control-masonry YAML format with separate subsections
+        if format == "control-masonry":
+            cherrypy.response.headers['Content-Type'] = 'text/yaml'
+            tmpl = env.get_template('control-masonry.yaml')
+            return tmpl.render(controllist=controllist)
 
         # render json
         if format == "json":
