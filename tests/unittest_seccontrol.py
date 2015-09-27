@@ -2,6 +2,7 @@ import unittest
 import sys
 import os
 import json
+import yaml
 
 sys.path.append(os.path.join('lib'))
 sys.path.append(os.path.join('data'))
@@ -80,13 +81,13 @@ class SecControlTest(unittest.TestCase):
 		# To do - this test does not work
 		id = "AT-3"
 		c = SecControl(id)
-		c_json = c.get_control_yaml()
-		# print c_json
-		self.assertTrue(c_json["id"] == c.id)
-		self.assertTrue(c_json["title"] == c.title)
-		self.assertTrue(c_json["description"] == c.description)
-		self.assertTrue(c_json["responsible"] == c.responsible)
-		self.assertTrue(c_json["supplemental_guidance"] == c.supplemental_guidance)
+		c_yaml = yaml.load(c.get_control_yaml())
+		# print c_yaml
+		self.assertTrue(c_yaml["id"] == c.id)
+		self.assertTrue(c_yaml["title"] == c.title)
+		self.assertTrue(c_yaml["description"] == c.description)
+		self.assertTrue(c_yaml["responsible"] == c.responsible)
+		self.assertTrue(c_yaml["supplemental_guidance"] == c.supplemental_guidance)
 
 		# test for other (not organization, information system, or [Withdrawn)
 
