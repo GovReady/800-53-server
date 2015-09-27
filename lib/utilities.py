@@ -27,3 +27,9 @@ def replace_assignments(text, project):
     # for now do something hacking to prove it works
     text = text.replace(u'[Assignment: organization-defined audit record storage requirements]', project['assignments']['organization-defined-audit-record-storage-requirements'] )
     return text
+
+def replace_colons(text, project):
+    """ replace colons with &colon; """
+    # for now do something hacking to prove it works
+    text = text.replace(u':', "&colon;")
+    return text

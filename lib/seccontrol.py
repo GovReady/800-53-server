@@ -12,15 +12,16 @@ understand how to map security controls to continuous monitoring.
 Visit [tbd] for the latest version.
 """
 
-__author__ = "Greg Elin (gregelin@gitmachines.com)"
-__version__ = "$Revision: 0.2 $"
-__date__ = "$Date: 2015/08/01 13:07:00 $"
+__author__ = "Greg Elin (gregelin@govready.com)"
+__version__ = "$Revision: 0.3 $"
+__date__ = "$Date: 2015/09/26 20:22:00 $"
 __copyright__ = "Copyright (c) 2015 GovReady PBC"
 __license__ = "GPL 3.0"
 
 import os
 import sys
 import json
+import yaml
 import pprint
 import commands
 import re
@@ -29,6 +30,8 @@ class SecControl(object):
     "represent 800-53 security controls"
     def __init__(self, id):
         self.id = id
+        self.id2 = "other"
+        print "initializing"
         if "(" in self.id:
             self._load_control_enhancement_from_xml()
         else:
@@ -90,4 +93,23 @@ class SecControl(object):
         return self.json
         # To Do: needs test
 
+    def get_control_yaml(self):
+        "produce yaml version of control detail"
+        sc_yaml = dict(
+            id = self.id,
+            title = self.title,
+            description = self.description,
+            responsible = self.responsible,
+            supplemental_guidance = self.supplemental_guidance
+        )
+        return yaml.safe_dump(sc_yaml, default_flow_style=False)
 
+    # utility functions
+    def replace_line_breaks(self, text, break_src="\n", break_trg="<br />"):
+        """ replace one type of line break with another in text block """
+        if text is None:
+            return ""
+        if break_src in text:
+            return break_trg.join(text.split(break_src))
+        else:
+            return text

@@ -2,6 +2,7 @@ import unittest
 import sys
 import os
 import json
+import yaml
 
 sys.path.append(os.path.join('lib'))
 sys.path.append(os.path.join('data'))
@@ -75,6 +76,21 @@ class SecControlTest(unittest.TestCase):
 		self.assertTrue(c_json["supplemental_guidance"] == c.supplemental_guidance)
 
 		# test for other (not organization, information system, or [Withdrawn)
+
+	def test_generate_yaml(self):
+		# To do - this test does not work
+		id = "AT-3"
+		c = SecControl(id)
+		c_yaml = yaml.load(c.get_control_yaml())
+		# print c_yaml
+		self.assertTrue(c_yaml["id"] == c.id)
+		self.assertTrue(c_yaml["title"] == c.title)
+		self.assertTrue(c_yaml["description"] == c.description)
+		self.assertTrue(c_yaml["responsible"] == c.responsible)
+		self.assertTrue(c_yaml["supplemental_guidance"] == c.supplemental_guidance)
+
+		# test for other (not organization, information system, or [Withdrawn)
+
 
 if __name__ == "__main__":
 	unittest.main()
