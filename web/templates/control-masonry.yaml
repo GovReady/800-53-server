@@ -1,5 +1,6 @@
 {% for control in controllist %}{{ control.id }}:
   name: {{ control.title }}
+  description: {{ control.description|replace(":", "&colon;")|replace("\n", " ") }}
   description_intro: {{ control.description_intro|replace(":", "&colon;") }}
 {% for section in control.description_sections %}  {{section|replace(":", "&colon;")|replace(". ", ": ")}}
 {% endfor %}{% endfor %}
