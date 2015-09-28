@@ -284,4 +284,6 @@ if __name__ == '__main__':
             'tools.staticdir.dir': 'web/assets'
         }
     }
+    # Comment out next line to not serve on default 127.0.0.1 and not publicly
+    cherrypy.config.update({'server.socket_host': '0.0.0.0'})
     cherrypy.quickstart(StringGenerator(), '/', conf)
