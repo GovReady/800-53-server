@@ -1,5 +1,5 @@
 # 800-53-server
-Prototype of making fisma 800-53 controls interactive
+Prototype of making fisma 800-53 controls interactive and visualizing control relationships.
 
 A running version is http://800-53.govready.com
 
