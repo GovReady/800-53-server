@@ -1,6 +1,8 @@
 # 800-53-server
 Prototype of making fisma 800-53 controls interactive
 
+A running version is http://800-53.govready.com
+
 # Goal
 Create a python class that generates basic information about a FISMA 800-53 security control including:
 - [x] Full name of control
