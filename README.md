@@ -31,10 +31,9 @@ python web/800-53-server.py
 Open browser and visit either below URL:
 - http://127.0.0.1:8080/control
 - http://127.0.0.1:8080/control?id=SA-4
-
-### Want JSON?
-
-http://127.0.0.1:8080/control?id=SA-4&format=json
+- http://127.0.0.1:8080/control?id=SA-4&format=json
+- http://127.0.0.1:8080/controllist?ids=SA-4,AC-2,AC-3,AU-5&format=json
+- http://127.0.0.1:8080/controllist?ids=SA-4,AC-2,AC-3,AU-5&format=control-masonry
 
 # 800-53 security control from command line
 Run `viz_control_precursor.py` from root of repo.
