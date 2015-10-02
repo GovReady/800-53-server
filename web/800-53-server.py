@@ -285,5 +285,7 @@ if __name__ == '__main__':
         }
     }
     # Comment out next line to not serve on default 127.0.0.1 and not publicly
-    cherrypy.config.update({'server.socket_host': '0.0.0.0'})
+    cherrypy.config.update({'server.socket_host': '0.0.0.0',
+            'server.socket_port': 8080,
+            })
     cherrypy.quickstart(StringGenerator(), '/', conf)
