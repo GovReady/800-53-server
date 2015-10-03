@@ -1,5 +1,13 @@
 # 800-53-server
-Prototype of making fisma 800-53 controls interactive
+Prototype of making fisma 800-53 controls interactive and visualizing control relationships.
+
+A running version is http://800-53.govready.com
+
+Examples:
+- http://800-53.govready.com/control?id=SA-4
+- http://800-53.govready.com/control?id=SA-4&format=json
+- http://800-53.govready.com/controllist?ids=SA-4,AC-2,AC-3,AU-5&format=json
+
 
 # Goal
 Create a python class that generates basic information about a FISMA 800-53 security control including:
@@ -26,13 +34,12 @@ Run `800-53-server.py` from root of repo on local machine
 python web/800-53-server.py
 ```
 
-Open browser and visit either below URL:
+Open browser and visit your local URLs:
 - http://127.0.0.1:8080/control
 - http://127.0.0.1:8080/control?id=SA-4
-
-### Want JSON?
-
-http://127.0.0.1:8080/control?id=SA-4&format=json
+- http://127.0.0.1:8080/control?id=SA-4&format=json
+- http://127.0.0.1:8080/controllist?ids=SA-4,AC-2,AC-3,AU-5&format=json
+- http://127.0.0.1:8080/controllist?ids=SA-4,AC-2,AC-3,AU-5&format=control-masonry
 
 # 800-53 security control from command line
 Run `viz_control_precursor.py` from root of repo.
